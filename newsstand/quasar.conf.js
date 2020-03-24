@@ -68,7 +68,9 @@ module.exports = function (ctx) {
         'QItemLabel',
         'QInput',
         'QBadge',
-        'QSpace'
+        'QSpace',
+        'QFooter',
+        'QSeparator'
         
       ],
 
