@@ -60,7 +60,16 @@ module.exports = function (ctx) {
         'QAvatar',
         'QTabs',
         'QRouteTab',
-        'QBtnDropdown'
+        'QBtnDropdown',
+        'QTab',
+        'QList',
+        'QItem',
+        'QItemSection',
+        'QItemLabel',
+        'QInput',
+        'QBadge',
+        'QSpace'
+        
       ],
 
       directives: [

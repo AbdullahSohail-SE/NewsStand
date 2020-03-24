@@ -1,1 +1,22 @@
 // app global css in SCSS form
+.menu{
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  border-top: 2px solid #bbbbbb;
+  border-radius: 0px;
+  margin-top: 7px !important;
+  overflow: visible;
+
+  &::before{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    transform: translate(-50%,-50%);
+    border-color: #bbbbbb transparent;
+	  border-style: solid;
+	  border-width: 0px 10px 10px 10px;
+	  height: 0px;
+    width: 0px;
+    
+  }
+}
