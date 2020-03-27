@@ -5,40 +5,57 @@ const state={
 }
 
 const mutations={
-  'SET_topAroundTheGlobe'(state,payload)
+  'setTopAroundTheGlobe'(state,payload)
   {
-
+    state.topAroundTheGlobe=payload;
   },
  
-  'SET_Notifications'(state,payload){
+  'setNotifications'(state,payload){
 
   },
-  'Add_ReadLater'(state,payload){
+  'addReadLater'(state,payload){
 
   },
-  'Delete_ReadLater'(state,payload){
+  'deleteReadLater'(state,payload){
 
+  },
+  'randomize'(state,payload){
+    
   }
 };
 
 const getters={
-  'GET_Notifications'(state,getters){
+  'getNotifications'(state,getters){
 
   },
-  'GET_topAroundTheGlobe'(state,getters){
+  'getTopAroundTheGlobe'(state,getters){
+    return state.topAroundTheGlobe;
+  },
+  'getNumberReadingList'(state,getters){
 
   },
-  'GET_NumberReadingList'(state,getters){
-
-  },
-  'GET_NumberNotifications'(state,getters){
+  'getNumberNotifications'(state,getters){
 
   }
 };
 
 const actions={
-  AddToReadingList:(state,payload)=>{
+  AddToReadingList:(store,payload)=>{
 
+  },
+  LoadTopAroundTheGlobe(store,payload){
+    const sources=payload.join(',');
+    this._vm.$axios.get('/top-headlines',{
+      params:{
+        sources
+      }
+    })
+    .then(response=>{
+      store.commit('setTopAroundTheGlobe',response.data.articles);
+    })
+    .catch(error=>console.log(error));
+
+    
   }
 }
 export default{

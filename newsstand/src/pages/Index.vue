@@ -8,6 +8,9 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+ created(){
+   const sources=this.$store.getters['getSources'];
+   this.$store.dispatch('LoadTopAroundTheGlobe',sources);
+ }
 }
 </script>
