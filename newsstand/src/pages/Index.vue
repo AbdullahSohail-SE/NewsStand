@@ -8,9 +8,11 @@
 
 <script>
 export default {
+ 
  created(){
-   const sources=this.$store.getters['getSources'];
-   this.$store.dispatch('LoadTopAroundTheGlobe',sources);
+
+
+ 
  }
 }
 </script>

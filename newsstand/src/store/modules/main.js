@@ -43,8 +43,10 @@ const actions={
   AddToReadingList:(store,payload)=>{
 
   },
-  LoadTopAroundTheGlobe(store,payload){
+   LoadTopAroundTheGlobe({commit,getters},payload){
+    
     const sources=payload.join(',');
+
     this._vm.$axios.get('/top-headlines',{
       params:{
         sources
@@ -56,7 +58,7 @@ const actions={
     .catch(error=>console.log(error));
 
     
-  }
+   }
 }
 export default{
   state,mutations,getters,actions

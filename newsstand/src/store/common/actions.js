@@ -6,6 +6,7 @@ export function populateEnglishSources (context) {
     
    const sourceIDs= response.data.sources.map(source=>source.id);
    context.commit('fetchEnglishSources',sourceIDs);
+   context.dispatch('LoadTopAroundTheGlobe',sourceIDs);
   })
   .catch(error=>{
     console.log(error);
