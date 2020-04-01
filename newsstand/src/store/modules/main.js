@@ -53,7 +53,7 @@ const actions={
       }
     })
     .then(response=>{
-      store.commit('setTopAroundTheGlobe',response.data.articles);
+      commit('setTopAroundTheGlobe',response.data.articles);
     })
     .catch(error=>console.log(error));
 

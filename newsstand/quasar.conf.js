@@ -70,7 +70,12 @@ module.exports = function (ctx) {
         'QBadge',
         'QSpace',
         'QFooter',
-        'QSeparator'
+        'QSeparator',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+        'QSkeleton',
+        'QImg'
         
       ],
 
@@ -79,7 +84,7 @@ module.exports = function (ctx) {
       ],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Intersection']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
