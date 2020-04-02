@@ -26,7 +26,11 @@ export default {
       type:String,
       required:true },
    article:{
-     required:true}
+     required:true },
+   captionsize:{
+     type:String,
+     default:'large'
+   }
   },
   computed:{
     newsarticle:function(){
@@ -44,11 +48,11 @@ export default {
       return 'height-md';
     },
     captionSize:function(){
-      if (this.cardType=="large")
+      if (this.captionsize=="large")
       return 'q-img-caption-title-lg';
-      else if(this.cardType=="medium")
+      else if(this.captionsize=="medium")
       return 'q-img-caption-title-md';
-      else if(this.cardType=="small");
+      else if(this.captionsize=="small");
       return 'q-img-caption-title-sm';
     }
   }

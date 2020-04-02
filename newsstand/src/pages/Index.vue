@@ -6,11 +6,11 @@
         <span class="text-h6 " style="font-weight:500">{{ currentFormatDate }}</span>
       </header>
       <div class="col-7 q-px-xs q-py-lg">
-        <newscard cardType="large" :article="articles[0]"></newscard>
+        <newscard cardType="large" :article="articles[0]" :captionsize="'large'"></newscard>
       </div>
       <div class="col-5 q-px-xs q-py-lg">
-        <newscard class="q-mb-sm" cardType="medium" :article="articles[1]"></newscard>
-        <newscard cardType="medium" :article="articles[3]"></newscard>
+        <newscard class="q-mb-sm" cardType="medium" :article="articles[1]" :captionsize="'small'"></newscard>
+        <newscard cardType="medium" :article="articles[3]" :captionsize="'small'"></newscard>
       </div>
     </section>
   </q-page>
