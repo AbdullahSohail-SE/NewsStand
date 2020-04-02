@@ -1,14 +1,13 @@
 <template>
   <q-card :class="cardSize" flat square>
-          <span v-show="false">{{newsarticle}}</span>
           <q-skeleton v-if="!dataFetched" :class="cardSize" square></q-skeleton>
           <div :class="cardSize" v-else>
-            <q-img :src="newsarticle.urlToImage" height="100%" spinner-color="primary">
+            <q-img :src="article.urlToImage" height="100%" spinner-color="primary">
               <div class="absolute-bottom q-img-caption">
                 <h3 class="q-img-caption-title" :class="captionSize">
-                 <a :href="newsarticle.url">{{newsarticle.title}}</a> 
+                 <a :href="article.url">{{article.title}}</a> 
                 </h3>
-                <p class="q-img-caption-desc">{{newsarticle.description}}</p>
+                <p class="q-img-caption-desc">{{article.description}}</p>
               </div>
             </q-img>
           </div>
@@ -32,28 +31,28 @@ export default {
      default:'large'
    }
   },
-  computed:{
-    newsarticle:function(){
-      
-      if(this.article!=undefined){
+  watch:{
+    article:function(newVal){
+      if(newVal!=undefined)
+      {
         this.dataFetched=true;
-        return this.article;
-      }      
-
-    },
+      }
+    }
+  },
+  computed:{
     cardSize:function(){
       if (this.cardType=="large")
-      return 'height-lg';
+           return 'height-lg';
       else if(this.cardType=="medium")
-      return 'height-md';
+           return 'height-md';
     },
     captionSize:function(){
       if (this.captionsize=="large")
-      return 'q-img-caption-title-lg';
+           return 'q-img-caption-title-lg';
       else if(this.captionsize=="medium")
-      return 'q-img-caption-title-md';
+           return 'q-img-caption-title-md';
       else if(this.captionsize=="small");
-      return 'q-img-caption-title-sm';
+           return 'q-img-caption-title-sm';
     }
   }
 }
