@@ -9,8 +9,8 @@
         <newscard cardType="large" :article="articles[0]"></newscard>
       </div>
       <div class="col-5 q-px-xs q-py-lg">
-        <newscard cardType="medium" :article="articles[1]"></newscard>
-        <newscard cardType="medium" :article="articles[2]"></newscard>
+        <newscard class="q-mb-sm" cardType="medium" :article="articles[1]"></newscard>
+        <newscard cardType="medium" :article="articles[3]"></newscard>
       </div>
     </section>
   </q-page>
@@ -31,8 +31,7 @@ export default {
       return unformated.toDateString().replace(day,`${day},`);   
     },
     articles:function(){
-      var articles=this.$store.getters.getTopAroundTheGlobe;
-      console.log(articles);
+       var articles=this.$store.getters.getTopAroundTheGlobe;
       return articles;
     }
   },

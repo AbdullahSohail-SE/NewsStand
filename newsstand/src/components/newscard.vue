@@ -1,10 +1,11 @@
 <template>
   <q-card :class="cardSize" flat square>
+          <span v-show="false">{{newsarticle}}</span>
           <q-skeleton v-if="!dataFetched" :class="cardSize" square></q-skeleton>
           <div :class="cardSize" v-else>
             <q-img :src="newsarticle.urlToImage" height="100%" spinner-color="primary">
               <div class="absolute-bottom q-img-caption">
-                <h3 class="q-img-caption-title q-img-caption-title-lg">
+                <h3 class="q-img-caption-title" :class="captionSize">
                  <a :href="newsarticle.url">{{newsarticle.title}}</a> 
                 </h3>
                 <p class="q-img-caption-desc">{{newsarticle.description}}</p>
@@ -29,17 +30,26 @@ export default {
   },
   computed:{
     newsarticle:function(){
-      console.log(this.article);
-      if(this.article.title){
-        this.datafetched=true;
+      
+      if(this.article!=undefined){
+        this.dataFetched=true;
         return this.article;
-      }
+      }      
+
     },
     cardSize:function(){
       if (this.cardType=="large")
       return 'height-lg';
       else if(this.cardType=="medium")
       return 'height-md';
+    },
+    captionSize:function(){
+      if (this.cardType=="large")
+      return 'q-img-caption-title-lg';
+      else if(this.cardType=="medium")
+      return 'q-img-caption-title-md';
+      else if(this.cardType=="small");
+      return 'q-img-caption-title-sm';
     }
   }
 }
