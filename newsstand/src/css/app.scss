@@ -24,3 +24,15 @@ a{
   text-decoration: none;
   color: inherit;
 }
+.hoverunderline{
+  &:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+.text-weight-600{
+  font-weight: 600;
+}
+.text-subtle-grey{
+  color: rgb(117,117,117);
+}
