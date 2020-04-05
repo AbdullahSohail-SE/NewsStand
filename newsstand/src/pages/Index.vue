@@ -19,22 +19,16 @@
         <div class="col-4 q-pr-md">
           <newslist :articles="topArticles.slice(3)"></newslist>
         </div>
-         <div class="col-5 bg-red">
-           <q-card class="q-py-md" square flat>
-             <q-img class="bg-red" spinner-color="primary" height="330px"></q-img>
-             <q-card-section class="q-px-none">
-               <h6 class="q-ma-none q-pa-none normal-line-height">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
-              <p class="q-my-sm text-body-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi sit animi perferendis quia optio provident doloribus aliquam repellendus ipsam commodi.</p>
-             </q-card-section>
-             <q-card-section class="q-pa-none row justify-between">
-               <span class="q-py-none text-subtle-grey">NyTimes.com</span>
-               <span class="q-py-none text-subtle-grey">22 March 2109</span>
-             </q-card-section>
-           </q-card>
+         <div class="col-5">
+           <longnewscard :article="topArticles[topArticles.length-2]"
+           :title="true"
+           :description="true"
+           :source="true"
+           ></longnewscard>
           </div>
         <div class="col-3 q-px-sm column">
             <div>
-              <q-card class="q-py-md" square flat>
+              <q-card class="q-py-sm" square flat>
                 <q-img spinner-color="primary" class="bg-red" height="150px"></q-img>
                 <q-card-section class="q-pa-none">
                   <p class="q-my-sm text-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, ipsum..</p>
@@ -42,7 +36,7 @@
               </q-card>
             </div>
             <div>
-              <q-card class="q-py-md" square flat>
+              <q-card class="q-py-sm" square flat>
                 <q-img spinner-color="primary" class="bg-red" height="150px"></q-img>
                 <q-card-section class="q-pa-none">
                   <p class="q-my-sm text-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, ipsum..</p>
@@ -58,6 +52,7 @@
 <script>
 import newscard from '../components/newscard'
 import newslist from '../components/newslist'
+import longnewscard from '../components/longnewscard'
 export default {
   data(){
     return{
@@ -77,7 +72,8 @@ export default {
   },
   components:{
     newscard,
-    newslist
+    newslist,
+    longnewscard
   }
 }
 </script>
