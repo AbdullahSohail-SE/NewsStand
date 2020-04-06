@@ -3,7 +3,7 @@
     <section class="row items-center q-mt-lg">
       <header class="row items-center justify-between col-12 header q-px-sm ">
         <h1 class="q-ma-none app-headings text-subtle-grey">Top Around The Globe</h1>
-        <span class="text-h6 text-subtle-grey" style="font-weight:500">{{ currentFormatDate }}</span>
+        <span class="text-h6 text-subtle-grey" style="font-weight:500">{{ new Date()|formattedDate}}</span>
       </header>
       <div class="col-7 q-px-xs q-py-lg">
         <newscard cardType="large" :article="topArticles[0]" :captionsize="'large'"></newscard>
@@ -20,28 +20,14 @@
           <newslist :articles="topArticles.slice(3)"></newslist>
         </div>
          <div class="col-5">
-           <longnewscard :article="topArticles[topArticles.length-2]"
-           :title="true"
-           :description="true"
-           :source="true"
-           ></longnewscard>
+           <longnewscard :article="topArticles[topArticles.length-3]" description source></longnewscard>
           </div>
         <div class="col-3 q-px-sm column">
             <div>
-              <q-card class="q-py-sm" square flat>
-                <q-img spinner-color="primary" class="bg-red" height="150px"></q-img>
-                <q-card-section class="q-pa-none">
-                  <p class="q-my-sm text-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, ipsum..</p>
-                </q-card-section>
-              </q-card>
+              <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-2]" titleSize="16px"></longnewscard>
             </div>
             <div>
-              <q-card class="q-py-sm" square flat>
-                <q-img spinner-color="primary" class="bg-red" height="150px"></q-img>
-                <q-card-section class="q-pa-none">
-                  <p class="q-my-sm text-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, ipsum..</p>
-                </q-card-section>
-              </q-card>
+              <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-1]" titleSize="16px"></longnewscard>
             </div>
         </div>
       </div>
@@ -60,11 +46,6 @@ export default {
     }
   },
   computed:{
-    currentFormatDate:function(){
-      var unformated=new Date();
-      var day=unformated.toDateString().split(' ')[0];
-      return unformated.toDateString().replace(day,`${day},`);   
-    },
     topArticles:function(){
        var articles=this.$store.getters.getTopAroundTheGlobe;
       return articles;
