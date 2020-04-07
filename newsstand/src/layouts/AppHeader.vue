@@ -11,8 +11,8 @@
       </q-toolbar-title>
       </div>
 
-      <div class="col-6 row items-center no-wrap">
-      <q-tabs>
+      <div class="col-6 row justify-around no-wrap">
+      <q-tabs style="width:80%">
         <q-route-tab class="resp-tab"  label="Latest" to="/" exact ></q-route-tab>
         <q-route-tab class="resp-tab"  label="General" to="/general" exact></q-route-tab>
         <q-route-tab class="resp-tab"  label="Science" to="/science" exact></q-route-tab>
@@ -77,12 +77,12 @@
         <q-badge   color="red" class="resp-badge" >2</q-badge>
         </q-route-tab>
       
-        <q-route-tab  class="resp-tab" icon="notifications" to="/notifications">
+        <q-route-tab  class="resp-tab resp-tab-noti" icon="notifications" to="/notifications">
         <q-badge  color="red" class="resp-badge">5</q-badge>
         </q-route-tab>
         <q-route-tab to="/user">
           <q-avatar >
-            <img style="z-index:10000" src="https://cdn.quasar.dev/img/avatar.png">
+            <img  src="https://cdn.quasar.dev/img/avatar.png">
           </q-avatar>
           <span  class="text-weight-medium q-ml-sm">Abdullah Sohail</span>
         </q-route-tab>
@@ -104,7 +104,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title{
-font-size: 1.2rem;
+font-size: 1.1rem;
 }
 .icon_catogary::before{
 content: url('~assets/catogaries.svg');
@@ -119,7 +119,10 @@ content: url('~assets/catogaries.svg');
     width: 5rem;
     height: 100%;
     position: relative;
-    
+    &-noti{
+      width: 3rem;
+      margin-right: -10px;
+    }
   }
 }
 .resp-badge{
