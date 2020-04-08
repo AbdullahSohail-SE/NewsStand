@@ -1,13 +1,13 @@
 <template>
   <q-card :class="cardSize" flat square>
           <q-skeleton v-if="!dataFetched" :class="cardSize" square></q-skeleton>
-          <div :class="cardSize" v-else>
+          <div  :class="cardSize" v-else>
             <q-img :src="article.urlToImage" height="100%" spinner-color="primary">
               <div class="absolute-bottom q-img-caption">
                 <h3 class="q-img-caption-title" :class="captionSize">
                  <a :href="article.url">{{article.title}}</a> 
                 </h3>
-                <p class="q-img-caption-desc">{{article.description}}</p>
+                <p v-if="description" class="q-img-caption-desc">{{article.description}}</p>
               </div>
             </q-img>
           </div>
@@ -29,6 +29,10 @@ export default {
    captionsize:{
      type:String,
      default:'large'
+   },
+   description:{
+     type:Boolean,
+     default:true
    }
   },
   watch:{

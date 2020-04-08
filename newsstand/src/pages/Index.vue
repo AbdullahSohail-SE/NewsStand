@@ -12,51 +12,112 @@
         <newscard class="q-mb-sm" cardType="medium" :article="topArticles[1]" :captionsize="'small'"></newscard>
         <newscard cardType="medium" :article="topArticles[2]" :captionsize="'small'"></newscard>
       </div>
-      <div class="row col-12" >
+      <div class="row col-12">
         <div class="col-12">
           <q-item-label class="q-px-none" header>More News</q-item-label>
         </div>
         <div class="col-4 q-pr-md">
           <newslist :articles="topArticles.slice(3)"></newslist>
         </div>
-         <div class="col-5">
-           <longnewscard :article="topArticles[topArticles.length-3]" description source></longnewscard>
-          </div>
-        <div class="col-3 q-px-sm column">
-            <div>
-              <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-2]" titleSize="16px"></longnewscard>
-            </div>
-            <div>
-              <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-1]" titleSize="16px"></longnewscard>
-            </div>
+        <div class="col-5">
+          <longnewscard :article="topArticles[topArticles.length-3]" description source></longnewscard>
         </div>
+        <div class="col-3 q-px-sm column">
+          <div>
+            <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-2]" titleSize="16px">
+            </longnewscard>
+          </div>
+          <div>
+            <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-1]" titleSize="16px">
+            </longnewscard>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="row items-center q-my-lg">
+      <header class="col-12 q-my-lg items-center">
+        <h1 class="q-my-lg app-headings text-subtle-grey">Asia's Top</h1>
+      </header>
+      <div class="justify-between col-12 row ">
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[0]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[1]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[2]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[3]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[4]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+        <div class="col-2">
+          <newscard class="q-pa-xs" :article="topArticles[5]" cardType="medium" captionsize="small" :description=false>
+          </newscard>
+        </div>
+      </div>
+    </section>
+    <section class="row items-top justify-between q-my-lg">
+      <header class="col-12 q-my-lg ">
+        <h1 class="q-my-sm app-headings text-subtle-grey">Europe's Latest</h1>
+      </header>
+      <div class="col-9 q-mt-md" >
+        <newscard  :article="topArticles[2]" cardType="large"></newscard>
+      </div>
+      <div class="col-3 q-px-md ">
+        <newslist number="9" :articles="topArticles.slice(3)"></newslist>
+      </div>
+    </section>
+    <section class="row items-stretch justify-between q-my-lg">
+      <header class="col-12 q-my-lg ">
+        <h1 class="q-my-sm app-headings text-subtle-grey">Africa Now</h1>
+      </header>
+      <div class="col-3 q-pa-xs">
+        <longnewscard :article="topArticles[0]" description source></longnewscard>
+      </div>
+      <div class="col-3 q-pa-xs">
+        <longnewscard :article="topArticles[1]" description source></longnewscard>
+      </div>
+      <div class="col-3 q-pa-xs">
+        <longnewscard :article="topArticles[4]" description source></longnewscard>
+      </div>
+      <div class="col-3 q-pa-xs">
+        <longnewscard :article="topArticles[3]" description source></longnewscard>
       </div>
     </section>
   </q-page>
 </template>
 
 <script>
-import newscard from '../components/newscard'
-import newslist from '../components/newslist'
-import longnewscard from '../components/longnewscard'
-export default {
-  data(){
-    return{
-      dataFetched:false
+  import newscard from '../components/newscard'
+  import newslist from '../components/newslist'
+  import longnewscard from '../components/longnewscard'
+  export default {
+    data() {
+      return {
+        dataFetched: false
+      }
+    },
+    computed: {
+      topArticles: function () {
+        var articles = this.$store.getters.getTopAroundTheGlobe;
+        return articles;
+      }
+    },
+    components: {
+      newscard,
+      newslist,
+      longnewscard
     }
-  },
-  computed:{
-    topArticles:function(){
-       var articles=this.$store.getters.getTopAroundTheGlobe;
-      return articles;
-    }
-  },
-  components:{
-    newscard,
-    newslist,
-    longnewscard
   }
-}
 </script>
 <style lang="scss" scoped>
 

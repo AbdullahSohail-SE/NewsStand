@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-py-sm" square flat>
+  <q-card style="height:100%" class="q-py-sm" square flat>
     <div v-if="!dataFetched">
       <q-skeleton square height="330px"></q-skeleton>
       <q-skeleton type="text" square height="150px"></q-skeleton>
@@ -12,9 +12,9 @@
         <p  class="q-my-sm text-body-1 customDesc" v-if="description">{{article.description}}</p>
         <p  class=" text-body-1 customContent" v-if="content">{{article.content}}</p>
       </q-card-section>
-      <q-card-section class="q-pa-none row justify-between" v-if="source">
-        <span class="q-py-none text-subtle-grey">{{article.source.name}}</span>
-        <span class="q-py-none text-subtle-grey">{{article.publishedAt|formattedDate}}</span>
+      <q-card-section class=" row justify-between q-pa-none move-end" v-if="source">
+        <span  class="q-py-none text-subtle-grey">{{article.source.name}}</span>
+        <span  class="q-py-none text-subtle-grey">{{article.publishedAt|formattedDate}}</span>
       </q-card-section>
     </div>
 
@@ -96,5 +96,9 @@
     font-size: var(--contSize);
   }
 }
-
+.move-end{
+  position:absolute;
+  bottom:0;
+  width: 100%;
+}
 </style>
