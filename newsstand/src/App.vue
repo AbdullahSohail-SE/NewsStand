@@ -8,6 +8,7 @@
 export default {
   created(){
     this.$store.dispatch('populateEnglishSources');
+    this.$store.dispatch('LoadRegionsLatest');
   }
 }
 </script>

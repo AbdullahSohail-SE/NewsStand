@@ -36,7 +36,7 @@
     </section>
     <section class="row items-center q-my-lg">
       <header class="col-12 q-my-lg items-center">
-        <h1 class="q-my-lg app-headings text-subtle-grey">Asia's Top</h1>
+        <h1 class="q-my-lg app-headings text-subtle-grey">Asia Top</h1>
       </header>
       <div class="justify-between col-12 row ">
         <div class="col-2">
@@ -44,36 +44,36 @@
           </newscard>
         </div>
         <div class="col-2">
-          <newscard class="q-pa-xs" :article="topArticles[1]" cardType="medium" captionsize="small" :description=false>
+          <newscard class="q-pa-xs" :article="asiaLatest[1]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
         <div class="col-2">
-          <newscard class="q-pa-xs" :article="topArticles[2]" cardType="medium" captionsize="small" :description=false>
+          <newscard class="q-pa-xs" :article="asiaLatest[2]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
         <div class="col-2">
-          <newscard class="q-pa-xs" :article="topArticles[3]" cardType="medium" captionsize="small" :description=false>
+          <newscard class="q-pa-xs" :article="asiaLatest[3]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
         <div class="col-2">
-          <newscard class="q-pa-xs" :article="topArticles[4]" cardType="medium" captionsize="small" :description=false>
+          <newscard class="q-pa-xs" :article="asiaLatest[4]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
         <div class="col-2">
-          <newscard class="q-pa-xs" :article="topArticles[5]" cardType="medium" captionsize="small" :description=false>
+          <newscard class="q-pa-xs" :article="asiaLatest[5]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
       </div>
     </section>
     <section class="row items-top justify-between q-my-lg">
       <header class="col-12 q-my-lg ">
-        <h1 class="q-my-sm app-headings text-subtle-grey">Europe's Latest</h1>
+        <h1 class="q-my-sm app-headings text-subtle-grey">Europe Latest</h1>
       </header>
       <div class="col-9 q-mt-md" >
-        <newscard  :article="topArticles[2]" cardType="large"></newscard>
+        <newscard  :article="europeLatest[0]" cardType="large"></newscard>
       </div>
       <div class="col-3 q-px-md ">
-        <newslist number="9" :articles="topArticles.slice(3)"></newslist>
+        <newslist :number="9" :articles="europeLatest.slice(3)"></newslist>
       </div>
     </section>
     <section class="row items-stretch justify-between q-my-lg">
@@ -81,16 +81,16 @@
         <h1 class="q-my-sm app-headings text-subtle-grey">Africa Now</h1>
       </header>
       <div class="col-3 q-pa-xs">
-        <longnewscard :article="topArticles[0]" description source></longnewscard>
+        <longnewscard :article="africaLatest[0]" description source></longnewscard>
       </div>
       <div class="col-3 q-pa-xs">
-        <longnewscard :article="topArticles[1]" description source></longnewscard>
+        <longnewscard :article="africaLatest[1]" description source></longnewscard>
       </div>
       <div class="col-3 q-pa-xs">
-        <longnewscard :article="topArticles[4]" description source></longnewscard>
+        <longnewscard :article="africaLatest[2]" description source></longnewscard>
       </div>
       <div class="col-3 q-pa-xs">
-        <longnewscard :article="topArticles[3]" description source></longnewscard>
+        <longnewscard :article="africaLatest[3]" description source></longnewscard>
       </div>
     </section>
   </q-page>
@@ -108,8 +108,17 @@
     },
     computed: {
       topArticles: function () {
-        var articles = this.$store.getters.getTopAroundTheGlobe;
-        return articles;
+        return this.$store.getters.getTopAroundTheGlobe;
+        
+      },
+      asiaLatest:function(){
+        return this.$store.getters.getAsiaLatest;
+      },
+      europeLatest:function(){
+        return this.$store.getters.getEuropeLatest;
+      },
+      africaLatest:function(){
+        return this.$store.getters.getAfricaLatest;
       }
     },
     components: {
