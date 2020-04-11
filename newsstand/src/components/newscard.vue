@@ -8,6 +8,7 @@
                  <a :href="article.url">{{article.title}}</a> 
                 </h3>
                 <p v-if="description" class="q-img-caption-desc">{{article.description}}</p>
+                <p v-if="content" class="q-img-caption-desc">{{article.content}}</p>
               </div>
             </q-img>
           </div>
@@ -33,6 +34,10 @@ export default {
    description:{
      type:Boolean,
      default:true
+   },
+   content:{
+     type:Boolean,
+     default:false
    }
   },
   watch:{
@@ -49,6 +54,8 @@ export default {
            return 'height-lg';
       else if(this.cardType=="medium")
            return 'height-md';
+      else if(this.cardType=="xlarge")
+           return 'height-xl';
     },
     captionSize:function(){
       if (this.captionsize=="large")
@@ -66,12 +73,16 @@ export default {
 //SASS variables
   $height-lg:510px;
   $height-md:250px;
+  $height-xl:600px;
 
 .height-lg{
   height: $height-lg;
 }
 .height-md{
   height: $height-md;
+}
+.height-xl{
+  height: $height-xl;
 }
 .q-img-caption{
   background-color: transparent;

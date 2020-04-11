@@ -1,135 +1,172 @@
-const state={
-  notifications:[],
-  readingList:[],
-  topAroundTheGlobe:[],
-  topInRegions:{
-    asia:[],
-    europe:[],
-    africa:[]
-  }
+const state = {
+  notifications: [],
+  readingList: [],
+  topAroundTheGlobe: [],
+  topInRegions: {
+    asia: [],
+    europe: [],
+    africa: []
+  },
+  coronaLatest: []
 }
 
-const mutations={
-  'setTopAroundTheGlobe'(state,payload)
-  {
-    state.topAroundTheGlobe=payload;
+const mutations = {
+  'setTopAroundTheGlobe'(state, payload) {
+    state.topAroundTheGlobe.push(...payload);
   },
-  'setTopInRegions'(state,payload){
-    if(payload.region=="asia"){
-      state.topInRegions.asia.push(...knuthShuffle(payload.data));
-      
-    }
-    if(payload.region=="europe"){
-      state.topInRegions.europe.push(...knuthShuffle(payload.data));
-    }
-    if(payload.region=="africa"){
-      state.topInRegions.africa.push(...knuthShuffle(payload.data));
-    }
-  },
-  'setNotifications'(state,payload){
+  'setTopInRegions'(state, payload) {
+
+    state.topInRegions[payload.region].push(...knuthShuffle(payload.data));
 
   },
-  'addReadLater'(state,payload){
+  'setCoronaLatest'(state, payload) {
+    state.coronaLatest.push(...knuthShuffle(payload));
+  },
+  'setNotifications'(state, payload) {
 
   },
-  'deleteReadLater'(state,payload){
+  'addReadLater'(state, payload) {
+
+  },
+  'deleteReadLater'(state, payload) {
 
   }
 };
 
-const getters={
-  'getNotifications'(state,getters){
+const getters = {
+  'getNotifications'(state, getters) {
 
   },
-  'getTopAroundTheGlobe'(state,getters){
+  'getTopAroundTheGlobe'(state, getters) {
     return state.topAroundTheGlobe;
   },
-  'getNumberReadingList'(state,getters){
+  'getNumberReadingList'(state, getters) {
 
   },
-  'getNumberNotifications'(state,getters){
+  'getNumberNotifications'(state, getters) {
 
   },
-  'getAsiaLatest'(state,getters){
+  'getCoronaLatest'(state, getters) {
+    return state.coronaLatest;
+  },
+  'getAsiaLatest'(state, getters) {
+
     return state.topInRegions.asia;
   },
-  'getEuropeLatest'(state,getters){
+  'getEuropeLatest'(state, getters) {
     return state.topInRegions.europe;
   },
-  'getAfricaLatest'(state,getters){
+  'getAfricaLatest'(state, getters) {
     return state.topInRegions.africa;
   }
 };
 
-const actions={
-  AddToReadingList:(store,payload)=>{
+const actions = {
+  AddToReadingList: (store, payload) => {
 
   },
-   LoadTopAroundTheGlobe({commit,getters},payload){
-    
-    const sources=payload.join(',');
+  LoadTopAroundTheGlobe({
+    commit,
+    getters
+  }, payload) {
 
-    this._vm.$axios.get('/top-headlines',{
-      params:{
-        sources
-      }
-    })
-    .then(response=>{
-      commit('setTopAroundTheGlobe',response.data.articles);
-    })
-    .catch(error=>console.log(error));
-
-    
-   },
-   LoadRegionsLatest({commit,getters},payload)
-   {
-     Promise.all(
-       [
-         this._vm.$axios.get('/top-headlines',{params:{country:'cn',pageSize:10}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'in',pageSize:10}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'ae',pageSize:10}}),
-
-         this._vm.$axios.get('/top-headlines',{params:{country:'at',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'be',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'bg',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'ch',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'cz',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'de',pageSize:5}}),
-
-         this._vm.$axios.get('/top-headlines',{params:{country:'eg',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'ma',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'ng',pageSize:5}}),
-         this._vm.$axios.get('/top-headlines',{params:{country:'za',pageSize:5}}),
-
-       ]
-     ).then(response=>{
-         var countryData=[];
-         response.forEach((country)=>{
-          countryData.push(country.data.articles);
-        });
-        var [china,india,uae,austria,belgium,bulgaria,swiss,czech,germany,egypt,morroco,nigeria,sa]=countryData;
-        
-       commit('setTopInRegions',{
-        region:'asia',
-        data: [...china,...india,...uae]
-        });
-       commit('setTopInRegions',{
-         region:'europe',
-         data:[...austria,...belgium,...bulgaria,...swiss,...czech,...germany]
-       });
-       commit('setTopInRegions',{
-         region:'africa',
-         data:[...egypt,...morroco,...nigeria,...sa]
-       });
-       
-       
-     });
-     
+    const fetchEnglishSources = () => {
+      return this._vm.$axios.get('/sources', {
+          params: {
+            language: 'en'
+          }
+        })
+        .then(response => response.data.sources.map(source => source.id))
     }
+    const populateTopAroundTheGlobe = (sources) => {
+      this._vm.$axios.get('/top-headlines', {
+          params: {
+            sources: sources.join(',')
+          }
+        })
+        .then(response => commit('setTopAroundTheGlobe', response.data.articles))
+    }
+
+    fetchEnglishSources().then(populateTopAroundTheGlobe);
+
+  },
+  LoadCoronaLatest({
+    commit,
+    getters
+  }, payload) {
+
+    this._vm.$axios.get('/everything', {
+        params: {
+          q: 'coronavirus',
+          sortBy: 'popularity',
+          language: 'en'
+        }
+      })
+      .then((response) => {
+        commit('setCoronaLatest', response.data.articles);
+      })
+
+  },
+  LoadRegionsLatest({
+    commit,
+    getters
+  }, payload) {
+
+    //this works
+    const sourceRequest = (countries) => {
+      const promisesCollection = [];
+      for (const country of countries) {
+        promisesCollection.push(this._vm.$axios.get('/sources', {
+          params: {
+            country,
+            language: 'en'
+          }
+        }));
+      }
+
+      return Promise.all(promisesCollection).then(
+        responsesArr => [].concat(...responsesArr.map(response => response.data.sources)).map(source => source.id)
+      );
+    };
+    var loadData = (sources, region) => {
+      if (sources.length != 0)
+        this._vm.$axios.get('/top-headlines', {
+          params: {
+            sources
+          }
+        })
+        .then(response => {
+          commit('setTopInRegions', {
+            region,
+            data: response.data.articles
+          })
+        })
+      else
+        alert('empty source!');
+    }
+
+    var asianCountries = ['in', 'ae', 'cn', 'eg', 'hk', 'il', 'jp'];
+    var europeanCountries = ['de', 'fr', 'gb', 'gr', 'hu', 'ie', 'it', 'pl', 'pt', 'ru'];
+    var africanCountries = ['ng', 'za', 'my'];
+
+    sourceRequest(asianCountries).then((sources) => loadData(sources, 'asia'));
+    sourceRequest(europeanCountries).then((sources) => loadData(sources, 'europe'));
+    sourceRequest(africanCountries).then((sources) => loadData(sources, 'africa'));
+
+
+
+  }
 }
 
-function knuthShuffle(arr){
-  var m = arr.length, t, i;
+function knuthShuffle(arr) {
+  arr.forEach((element, index) => {
+    if (!element.urlToImage) {
+      console.log(arr[index]);
+      arr.splice(index, 1);
+    }
+  });
+  var m = arr.length,
+    t, i;
 
   // While there remain elements to shuffle…
   while (m) {
@@ -142,13 +179,16 @@ function knuthShuffle(arr){
     arr[m] = arr[i];
     arr[i] = t;
   }
-  if(arr.length>0)
-  return arr.slice(arr.length-20);
+  if (arr.length > 0)
+    return arr.slice(arr.length - 20);
 
   return arr;
 
 }
 
-export default{
-  state,mutations,getters,actions
+export default {
+  state,
+  mutations,
+  getters,
+  actions
 }

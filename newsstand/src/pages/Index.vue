@@ -93,6 +93,14 @@
         <longnewscard :article="africaLatest[3]" description source></longnewscard>
       </div>
     </section>
+    <section class="row q-my-lg">
+      <header class="col-12 q-my-lg">
+        <h1 class="q-my-sm app-headings text-subtle-grey">Coronavirus</h1>
+      </header>
+      <div class="col-12">
+        <newscard cardType="large" :article="coronaUpdates[0]" :captionsize="'large'"></newscard>
+      </div>
+    </section>
   </q-page>
 </template>
 
@@ -119,6 +127,9 @@
       },
       africaLatest:function(){
         return this.$store.getters.getAfricaLatest;
+      },
+      coronaUpdates:function(){
+        return this.$store.getters.getCoronaLatest;
       }
     },
     components: {
