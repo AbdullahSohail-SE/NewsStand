@@ -2,7 +2,9 @@
   <q-layout view="hHr LpR lfr">
     <app-header></app-header>
         <q-page-container>
+          <keep-alive>
           <router-view></router-view>
+          </keep-alive>
         </q-page-container>
     <app-footer></app-footer>
   </q-layout>

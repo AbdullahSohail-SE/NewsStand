@@ -109,6 +109,7 @@
   import newslist from '../components/newslist'
   import longnewscard from '../components/longnewscard'
   export default {
+    name:"index",
     data() {
       return {
         dataFetched: false
@@ -136,6 +137,11 @@
       newscard,
       newslist,
       longnewscard
+    },
+    created(){
+      this.$store.dispatch('LoadTopAroundTheGlobe');
+      this.$store.dispatch('LoadRegionsLatest');
+      this.$store.dispatch('LoadCoronaLatest');
     }
   }
 </script>

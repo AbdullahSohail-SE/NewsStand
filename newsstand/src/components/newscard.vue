@@ -18,7 +18,7 @@
 export default {
   data(){
     return{
-      dataFetched:false
+      dataFetched:true
     }
   },
   props:{
@@ -42,9 +42,9 @@ export default {
   },
   watch:{
     article:function(newVal){
-      if(newVal!=undefined)
+      if(newVal==undefined)
       {
-        this.dataFetched=true;
+        this.dataFetched=false;
       }
     }
   },

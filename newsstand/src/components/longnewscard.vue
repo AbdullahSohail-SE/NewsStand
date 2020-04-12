@@ -24,7 +24,7 @@
   export default {
     data() {
       return {
-        dataFetched: false
+        dataFetched: true
       }
     },
     props: {
@@ -66,8 +66,8 @@
     },
     watch: {
       article: function (newVal) {
-        if (newVal != undefined)
-          this.dataFetched = true;
+        if (newVal == undefined)
+          this.dataFetched = false;
       }
     },
     updated(){      
