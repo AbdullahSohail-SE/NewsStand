@@ -1,4 +1,4 @@
-/*
-export function someGetter (state) {
+
+export function getGeneralArticles (state) {
+    return state.generalArticles;
 }
-*/

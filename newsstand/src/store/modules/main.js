@@ -161,7 +161,6 @@ const actions = {
 function knuthShuffle(arr) {
   arr.forEach((element, index) => {
     if (!element.urlToImage) {
-      console.log(arr[index]);
       arr.splice(index, 1);
     }
   });
