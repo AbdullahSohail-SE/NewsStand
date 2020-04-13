@@ -1,5 +1,5 @@
 <template>
-  <q-card style="height:100%" class="q-py-sm" square flat>
+  <q-card class="q-py-sm" square flat>
     <div v-if="!dataFetched">
       <q-skeleton square height="330px"></q-skeleton>
       <q-skeleton type="text" square height="150px"></q-skeleton>
@@ -11,6 +11,7 @@
         <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}</h6>
         <p  class="q-my-sm text-body-1 customDesc" v-if="description">{{article.description}}</p>
         <p  class=" text-body-1 customContent" v-if="content">{{article.content}}</p>
+        <q-btn class="q-mb-md" v-if="linkBtn" type="a" :href="article.url" label="News Link" outline color="teal" icon-right="link" target="_blank" />
       </q-card-section>
       <q-card-section class=" row justify-between q-pa-none move-end" v-if="source">
         <span  class="q-py-none text-subtle-grey">{{article.source.name}}</span>
@@ -30,6 +31,10 @@
     props: {
       article: {
         required: true
+      },
+      linkBtn:{
+        default:false,
+        type:Boolean
       },
       title: {
         default: true,

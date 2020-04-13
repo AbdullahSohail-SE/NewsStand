@@ -25,9 +25,6 @@
     computed:{
       articles:function(){
         return this.newsarticles.slice(0,this.number);
-      },
-      selectedArticle:function(){
-        console.log(this.$store.getters.getSelectedArticle);
       }
     },
     methods:{
@@ -45,13 +42,9 @@
 //   padding-right: 0;
 // }
 .active-item {
-  // border-top: 2px solid $primary;
-  // border-bottom: 2px solid $primary;
-  // border-radius: 2px solid $primary;
-  box-shadow: none;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
 
- 
+border-left: 4px solid $primary;
+// background-color: $primary;
+// color: white; 
 }
 </style>
