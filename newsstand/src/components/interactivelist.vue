@@ -1,17 +1,18 @@
 <template>
   <q-list class="quasar-list" >
-    <q-item active active-class="active-item" clickable >
+    <q-item :data-id="0" @click="loadArticle" active active-class="active-item" clickable >
       <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
     </q-item>
-    <q-item  active-class="active-item" clickable >
+    <q-item :data-id="1" @click="loadArticle" active-class="active-item" clickable >
       <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
     </q-item>
-    <q-item  active-class="active-item" clickable >
+    <q-item :data-id="2" @click="loadArticle" active-class="active-item" clickable >
       <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
     </q-item>
-    <q-item  active-class="active-item" clickable >
+    <q-item :data-id="3" @click="loadArticle" active-class="active-item" clickable >
       <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
     </q-item>
+    
   </q-list>
 </template>
 <script>
@@ -28,6 +29,14 @@
     computed:{
       articles:function(){
         return this.newsarticles.slice(0,this.number);
+      },
+      selectedArticle:function(){
+        console.log(this.$store.getters.getSelectedArticle);
+      }
+    },
+    methods:{
+      loadArticle:function(e){
+        this.$store.dispatch('setSelectedArticle', e.target.closest('[data-id]').dataset.id);
       }
     }
   }

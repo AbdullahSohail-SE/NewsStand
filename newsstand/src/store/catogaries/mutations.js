@@ -1,11 +1,16 @@
 
 export function populateGeneralArticles (state,payload) {
-  //assigning unique identifiers
-  payload.forEach((element,index) => {
-    element.id=index;
-  });
+  
+  var shuffled=knuthShuffle(payload);
+  shuffled.forEach((e,i)=>e.id=i);
+  state.generalArticles=shuffled;
 
-  state.generalArticles=knuthShuffle(payload);
+  //default selected article is first one
+  state.selectedArticle=shuffled[0];
+}
+
+export function selectArticle(state,payload){
+  state.selectedArticle=payload;
 }
 
 function knuthShuffle(arr) {
@@ -26,7 +31,8 @@ function knuthShuffle(arr) {
     arr[m] = arr[i];
     arr[i] = t;
   }
-  if (arr.length > 0)
+
+  if (arr.length > 20)
     return arr.slice(arr.length - 20);
 
   return arr;
