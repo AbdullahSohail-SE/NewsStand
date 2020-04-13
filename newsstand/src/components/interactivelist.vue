@@ -1,22 +1,18 @@
 <template>
   <q-list class="quasar-list" >
-    <q-item :data-id="0" @click="loadArticle" active active-class="active-item" clickable >
-      <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
+    <q-item v-for="article in articles" :key="article.id" :data-id="article.id" @click="loadArticle" :active="activeId==article.id"  active-class="active-item" clickable >
+      <q-item-section class="text-weight-600 ">{{article.title}}</q-item-section>
     </q-item>
-    <q-item :data-id="1" @click="loadArticle" active-class="active-item" clickable >
-      <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
-    </q-item>
-    <q-item :data-id="2" @click="loadArticle" active-class="active-item" clickable >
-      <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
-    </q-item>
-    <q-item :data-id="3" @click="loadArticle" active-class="active-item" clickable >
-      <q-item-section class="text-weight-600 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas, sint?</q-item-section>
-    </q-item>
-    
   </q-list>
+  
 </template>
 <script>
   export default {
+    data(){
+      return {
+        activeId:0
+      }
+    },
     props: {
       newsarticles: {
         required: true
@@ -36,7 +32,9 @@
     },
     methods:{
       loadArticle:function(e){
-        this.$store.dispatch('setSelectedArticle', e.target.closest('[data-id]').dataset.id);
+        var selectedId=e.target.closest('[data-id]').dataset.id;
+        this.activeId=selectedId;
+        this.$store.dispatch('setSelectedArticle', selectedId);
       }
     }
   }
@@ -54,19 +52,6 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 
-  &::after {
-    content: "";
-    position: absolute;
-    right: -29px;
-    transform: translateY(-50%);
-    top: 50%;
-    width: 0;
-    height: 0;
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-
-    border-left: 30px solid $primary;
-    
-  }
+ 
 }
 </style>
