@@ -7,6 +7,7 @@
   
 </template>
 <script>
+import routes from '../router/routes';
   export default {
     data(){
       return {
@@ -27,11 +28,16 @@
         return this.newsarticles.slice(0,this.number);
       }
     },
+    watch:{
+      $route (to, from){
+            this.activeId=0;
+         }
+    },
     methods:{
       loadArticle:function(e){
         var selectedId=e.target.closest('[data-id]').dataset.id;
         this.activeId=selectedId;
-        this.$store.dispatch('setSelectedArticle', selectedId);
+        this.$store.dispatch('setSelectedArticle',{id:selectedId,category:this.articles[0].category});
       }
     }
   }

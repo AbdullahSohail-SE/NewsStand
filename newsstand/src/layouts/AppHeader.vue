@@ -14,15 +14,15 @@
       <div class="col-6 row justify-around no-wrap">
       <q-tabs style="width:80%">
         <q-route-tab class="resp-tab"  label="Latest" to="/" exact ></q-route-tab>
-        <q-route-tab class="resp-tab"  label="General" to="/general" exact></q-route-tab>
-        <q-route-tab class="resp-tab"  label="Science" to="/science" exact></q-route-tab>
-        <q-route-tab class="resp-tab"  label="Business" to="/science" exact></q-route-tab>
+        <q-route-tab class="resp-tab"  label="General" :to="{name:'categories',params:{type:'general'}}" exact></q-route-tab>
+        <q-route-tab class="resp-tab"  label="Science" :to="{name:'categories',params:{type:'science'}}" exact></q-route-tab>
+        <q-route-tab class="resp-tab"  label="Business" :to="{name:'categories',params:{type:'business'}}" exact></q-route-tab>
       </q-tabs>
       <q-btn-dropdown menu-anchor="bottom middle" menu-self="top middle" content-class="menu"  flat dense dropdown-icon="none" class="icon_catogary">
           <div class="row q-pa-md text-weight-medium" style="width:430px">
             <div class="col">
               <q-list>
-                <q-item>
+                <q-item >
                   <q-item-section class="cursor-pointer">Coronavirus</q-item-section>
                 </q-item>
                 <q-item >
@@ -31,25 +31,25 @@
                 <q-item >
                   <q-item-section class="cursor-pointer">U.K</q-item-section>
                 </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">Health</q-item-section>
+                <q-item :to="{name:'categories',params:{type:'health'}}" class="cursor-pointer">
+                  <q-item-section >Health</q-item-section>
                 </q-item>
               </q-list>
             </div>
             <div class="col">
               <q-list>
-                <q-item >
+                <q-item :to="{name:'categories',params:{type:'entertainment'}}">
                   <q-item-section class="cursor-pointer">
                     Entertainment
                   </q-item-section>
                 </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">
+                <q-item :to="{name:'categories',params:{type:'sports'}}">
+                  <q-item-section  class="cursor-pointer">
                     Sports
                   </q-item-section>
                 </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">
+                <q-item :to="{name:'categories',params:{type:'technology'}}" class="cursor-pointer">
+                  <q-item-section >
                     Technology
                   </q-item-section>
                 </q-item>

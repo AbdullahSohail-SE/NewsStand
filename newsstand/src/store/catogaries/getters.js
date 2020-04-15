@@ -1,11 +1,13 @@
 
-export function getGeneralArticles (state) {
-    return state.generalArticles;
+export function getArticles (state) {
+    return function(payload){
+        return state.articles[payload];
+    }
 }
 export function getArticleById (state){
     
     return function(payload){
-        return state.generalArticles.find(o=>o.id == payload);
+        return state.articles[payload.category].find(article=>article.id==payload.id);
     }
 }
 export function getSelectedArticle (state){

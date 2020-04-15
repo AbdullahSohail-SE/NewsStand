@@ -9,4 +9,7 @@ export default async ({ Vue }) => {
       return value.toDateString().replace(day,`${day},`); 
     
   });
+  Vue.filter('capitalizeFirst',function(value){
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  })
 }

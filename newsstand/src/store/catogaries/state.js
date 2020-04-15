@@ -1,6 +1,15 @@
 export default function () {
   return {
-    generalArticles:[],
-    selectedArticle:{}
+    articles:{
+      general:[],
+      science:[],
+      business:[],
+      entertainment:[],
+      sports:[],
+      technology:[],
+      health:[]
+    },
+    selectedArticle:{},
+    routesVisited:[]
   }
 }

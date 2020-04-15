@@ -1,11 +1,14 @@
 
-export function populateGeneralArticles (state,payload) {
+export function populateArticles (state,payload) {
   
-  var shuffled=knuthShuffle(payload);
-  shuffled.forEach((e,i)=>e.id=i);
-  state.generalArticles=shuffled;
-
-  //default selected article is first one
+  
+  var shuffled=knuthShuffle(payload.data);
+  shuffled.forEach((e,i)=>{
+    e.id=i;
+    e.category=payload.type;
+  });
+  state.articles[payload.type]=shuffled;
+  //first one default selection
   state.selectedArticle=shuffled[0];
 }
 

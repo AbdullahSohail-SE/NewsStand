@@ -2,7 +2,7 @@
   <q-page  padding>
     <section class="row">
     <header class="col-12 q-my-lg items-center justify-between">
-    <h1 class="q-mx-md q-ma-none app-headings text-subtle-grey">General News</h1>
+    <h1 class="q-mx-md q-ma-none app-headings text-subtle-grey">{{currentCategory | capitalizeFirst}} News</h1>
     </header>
     <interactivelist  :newsarticles="generalArticles" class="col-4">
     </interactivelist>
@@ -16,14 +16,19 @@ import interactivelist from '../components/interactivelist'
 import longnewscard from '../components/longnewscard'
 
 export default {
-  name:"general",
+  data(){
+    return {
+      currentCategory:''
+    }
+  },
   components:{
     interactivelist,
     longnewscard
   },
   computed:{
     generalArticles:function(){
-      return this.$store.getters.getGeneralArticles;
+
+      return this.$store.getters.getArticles(this.currentCategory);
     },
     selectedArticle:function(){
         return this.$store.getters.getSelectedArticle;
@@ -32,8 +37,14 @@ export default {
   methods:{
   },
   created(){
-  this.$store.dispatch('loadGeneralArticles');
-} 
+  this.currentCategory=this.$router.currentRoute.params.type;
+  this.$store.dispatch('loadArticles',this.currentCategory);  
+  },
+  beforeRouteUpdate(to,from,next){
+    this.currentCategory=to.params.type;
+    this.$store.dispatch('loadArticles',this.currentCategory); 
+    next();
+  } 
 }
 </script>
 <style lang="scss" scoped>
