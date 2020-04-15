@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import main from './modules/main'
 import catogaries from './catogaries/index'
+import common from './common/index'
 
 
 // import example from './module-example'
@@ -22,7 +23,8 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
       main,
-      catogaries
+      catogaries,
+      common
     },
 
     // enable strict mode (adds overhead!)

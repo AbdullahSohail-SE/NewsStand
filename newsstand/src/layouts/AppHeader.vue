@@ -74,7 +74,7 @@
       <div class="col-4 row items-center justify-end">
       <q-tabs shrink inline-label >
         <q-route-tab  class="resp-tab"  dense icon="bookmarks" label="Saved" to="/readinglist" exact >
-        <q-badge   color="red" class="resp-badge" >2</q-badge>
+        <q-badge   color="red" class="resp-badge" >{{bookmarked}}</q-badge>
         </q-route-tab>
       
         <q-route-tab  class="resp-tab resp-tab-noti" icon="notifications" to="/notifications">
@@ -98,6 +98,11 @@ export default {
   data(){
     return{
       searchQuery:""
+    }
+  },
+  computed:{
+    bookmarked: function(){
+     return this.$store.getters.getNumberReadingList;
     }
   }
 }

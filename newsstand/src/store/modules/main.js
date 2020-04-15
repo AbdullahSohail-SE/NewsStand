@@ -1,6 +1,4 @@
 const state = {
-  notifications: [],
-  readingList: [],
   topAroundTheGlobe: [],
   topInRegions: {
     asia: [],
@@ -22,35 +20,18 @@ const mutations = {
   'setCoronaLatest'(state, payload) {
     state.coronaLatest.push(...knuthShuffle(payload));
   },
-  'setNotifications'(state, payload) {
 
-  },
-  'addReadLater'(state, payload) {
-
-  },
-  'deleteReadLater'(state, payload) {
-
-  }
 };
 
 const getters = {
-  'getNotifications'(state, getters) {
-
-  },
+  
   'getTopAroundTheGlobe'(state, getters) {
     return state.topAroundTheGlobe;
-  },
-  'getNumberReadingList'(state, getters) {
-
-  },
-  'getNumberNotifications'(state, getters) {
-
   },
   'getCoronaLatest'(state, getters) {
     return state.coronaLatest;
   },
   'getAsiaLatest'(state, getters) {
-
     return state.topInRegions.asia;
   },
   'getEuropeLatest'(state, getters) {
@@ -62,9 +43,7 @@ const getters = {
 };
 
 const actions = {
-  AddToReadingList: (store, payload) => {
-
-  },
+ 
   LoadTopAroundTheGlobe({
     commit,
     getters

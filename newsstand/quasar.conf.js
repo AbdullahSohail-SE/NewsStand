@@ -77,7 +77,8 @@ module.exports = function (ctx) {
         'QCardSection',
         'QCardActions',
         'QSkeleton',
-        'QImg'
+        'QImg',
+        'QTooltip'
         
       ],
 

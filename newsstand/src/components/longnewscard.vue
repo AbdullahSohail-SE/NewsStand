@@ -6,7 +6,16 @@
     </div>
     
     <div class="custom" ref="custom" v-else>
-      <q-img :src="article.urlToImage" spinner-color="primary" :height="imgHeight"></q-img>
+      <q-img :src="article.urlToImage" spinner-color="primary" :height="imgHeight">
+        <q-btn @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
+          <q-tooltip
+          transition-show="scale"
+          transition-hide="scale"
+        >
+          Bookmark
+        </q-tooltip>
+        </q-btn>
+      </q-img>
       <q-card-section class="q-px-none customContainer">
         <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}</h6>
         <p  class="q-my-sm text-body-1 customDesc" v-if="description">{{article.description}}</p>
@@ -26,6 +35,14 @@
     data() {
       return {
         dataFetched: true
+      }
+    },
+    computed:{
+      bookmarked:function(){
+      if(this.$store.getters.getReadingList
+       .findIndex(obj=>obj.category==this.article.category && obj.id==this.article.id)==-1)
+      return false;
+      return true;
       }
     },
     props: {
@@ -75,6 +92,17 @@
           this.dataFetched = false;
       }
     },
+    methods:{
+      bookmark:function(){
+        if(!this.bookmarked){
+        this.$store.dispatch('AddToReadingList',this.article);
+        }
+        else
+        {
+          this.$store.dispatch('unbookmark',{id:this.article.id,category:this.article.category});
+        }
+      }
+    },
     updated(){      
 
     var customDiv=this.$refs.custom;    
@@ -105,5 +133,11 @@
   position:absolute;
   bottom:0;
   width: 100%;
+}
+.bookmark{
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  box-shadow: 0 0 10px black;
 }
 </style>
