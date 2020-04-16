@@ -10,5 +10,6 @@ export function getNumberNotifications(state, getters) {
   
 }
 export function getReadingList(state,getters){
+  console.log(state.readingList);
   return state.readingList;
 }

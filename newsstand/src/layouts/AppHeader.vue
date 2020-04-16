@@ -73,7 +73,7 @@
 
       <div class="col-4 row items-center justify-end">
       <q-tabs shrink inline-label >
-        <q-btn-dropdown menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" label="saved" style="height:100%"  flat dense   >
+        <q-btn-dropdown  menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" label="saved" style="height:100%"  flat dense   >
         <template v-slot:label >
         <q-badge   color="red" class="resp-badge" >{{bookmarked}}</q-badge>
         </template>

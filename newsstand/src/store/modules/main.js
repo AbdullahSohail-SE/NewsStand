@@ -63,7 +63,10 @@ const actions = {
             sources: sources.join(',')
           }
         })
-        .then(response => commit('setTopAroundTheGlobe', response.data.articles))
+        .then(response =>{ 
+          assignIds(response.data.articles,'topAroundTheGlobe');
+          commit('setTopAroundTheGlobe', response.data.articles)
+        })
     }
 
     fetchEnglishSources().then(populateTopAroundTheGlobe);
@@ -82,6 +85,7 @@ const actions = {
         }
       })
       .then((response) => {
+        assignIds(response.data.articles,'coronavirusLatest');
         commit('setCoronaLatest', response.data.articles);
       })
 
@@ -115,6 +119,7 @@ const actions = {
           }
         })
         .then(response => {
+          assignIds(response.data.articles,region+'Latest');
           commit('setTopInRegions', {
             region,
             data: response.data.articles
@@ -163,7 +168,12 @@ function knuthShuffle(arr) {
   return arr;
 
 }
-
+function assignIds(arr,category){
+arr.forEach((article,i)=>{
+  article.id=i;
+  article.category=category;
+})
+}
 export default {
   state,
   mutations,
