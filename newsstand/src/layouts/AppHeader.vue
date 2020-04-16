@@ -73,9 +73,21 @@
 
       <div class="col-4 row items-center justify-end">
       <q-tabs shrink inline-label >
-        <q-route-tab  class="resp-tab"  dense icon="bookmarks" label="Saved" to="/readinglist" exact >
+        <q-btn-dropdown menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" label="saved" style="height:100%"  flat dense   >
+        <template v-slot:label >
         <q-badge   color="red" class="resp-badge" >{{bookmarked}}</q-badge>
-        </q-route-tab>
+        </template>
+        <q-list v-if="bookmarked" style="width:300px" class="q-mx-md" separator padding>
+          <q-item v-for="article in bookmarkedArticles" :key="article.title">
+            <q-item-section>
+              <span  class="bookmark-text text-weight-medium">{{article.title}}</span>
+            </q-item-section>
+            <q-item-section side>
+               <q-btn @click="removeBookmark({id:article.id,category:article.category})" icon="fa fa-trash" round flat color="red" size="10px"></q-btn>
+            </q-item-section>
+          </q-item>
+        </q-list>
+        </q-btn-dropdown>
       
         <q-route-tab  class="resp-tab resp-tab-noti" icon="notifications" to="/notifications">
         <q-badge  color="red" class="resp-badge">5</q-badge>
@@ -103,6 +115,14 @@ export default {
   computed:{
     bookmarked: function(){
      return this.$store.getters.getNumberReadingList;
+    },
+    bookmarkedArticles:function(){
+     return this.$store.getters.getReadingList
+    }
+  },
+  methods:{
+    removeBookmark:function(payload){
+      this.$store.dispatch('unbookmark',payload);
     }
   }
 }
@@ -133,6 +153,19 @@ content: url('~assets/catogaries.svg');
 .resp-badge{
     transform: translate(4px,-10px);;
   }
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+.bookmark-text{
+  font-size:12px;
+  cursor:pointer;
+  
+  &:hover{
+    text-decoration: underline;
+  }
+}
 
 
 </style>
