@@ -1,3 +1,5 @@
+import userStore from '../store/users/index'
+
 const routes = [{
   path: '/',
   component: () => import('layouts/MainLayout.vue'),
@@ -10,8 +12,35 @@ const routes = [{
       path: '/categories/:type',
       component: () => import('pages/Categories.vue'),
     }
+  ],
+  beforeEnter(to,from,next){
+    if(userStore.state.currentUser)
+    {
+      
+      next();
+      
+    }
+    else
+    next('/users/signIn');
+  }
+},
+{
+  path:'/users',
+  component:() => import('layouts/users'),
+  children:[
+    {
+      path:'signIn',
+      component:() => import ('pages/signIn')
+    },
+    {
+      path:'signUp',
+      component:() => import ('pages/signUp')
+    }
   ]
-}]
+}
+
+
+]
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
