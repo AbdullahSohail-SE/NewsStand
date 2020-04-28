@@ -19,6 +19,8 @@ export default async ({Vue}) => {
   firebaseService.fBInit(firebaseConfig);
 
   Vue.prototype.$firebaseAuth=firebaseService.auth();
+  Vue.prototype.$firebaseAuthSDK=firebaseService.authSDK;
   Vue.prototype.$firebaseDb=firebaseService.realtimeDb();
+  Vue.prototype.$firebaseDbREST=firebaseService.realtimeDbREST();
 
 }

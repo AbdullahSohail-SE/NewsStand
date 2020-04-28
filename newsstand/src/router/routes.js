@@ -1,43 +1,37 @@
-import userStore from '../store/users/index'
+import userStore from '../store/index'
 
 const routes = [{
-  path: '/',
-  component: () => import('layouts/MainLayout.vue'),
-  children: [{
-      path: '',
-      component: () => import('pages/Index.vue')
-    },
-    {
-      name:"categories",
-      path: '/categories/:type',
-      component: () => import('pages/Categories.vue'),
-    }
-  ],
-  beforeEnter(to,from,next){
-    if(userStore.state.currentUser)
-    {
-      
-      next();
-      
-    }
-    else
-    next('/users/signIn');
+
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{
+        name: 'Index',
+        path: '',
+        component: () => import('pages/Index.vue'),
+        
+      },
+      {
+        name: "categories",
+        path: '/categories/:type',
+        component: () => import('pages/Categories.vue'),
+       
+      }
+    ],
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/users',
+    component: () => import('layouts/users'),
+    children: [{
+        path: 'signIn',
+        component: () => import('pages/signIn')
+      },
+      {
+        path: 'signUp',
+        component: () => import('pages/signUp')
+      }
+    ]
   }
-},
-{
-  path:'/users',
-  component:() => import('layouts/users'),
-  children:[
-    {
-      path:'signIn',
-      component:() => import ('pages/signIn')
-    },
-    {
-      path:'signUp',
-      component:() => import ('pages/signUp')
-    }
-  ]
-}
 
 
 ]

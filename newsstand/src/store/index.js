@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import main from './modules/main'
 import catogaries from './catogaries/index'
 import common from './common/index'
+import users from './users/index'
 
 
 // import example from './module-example'
@@ -24,7 +25,8 @@ export default function (/* { ssrContext } */) {
       // example
       main,
       catogaries,
-      common
+      common,
+      users
     },
 
     // enable strict mode (adds overhead!)

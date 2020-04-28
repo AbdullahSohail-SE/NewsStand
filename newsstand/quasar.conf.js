@@ -79,7 +79,10 @@ module.exports = function (ctx) {
         'QCardActions',
         'QSkeleton',
         'QImg',
-        'QTooltip'
+        'QTooltip',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide'
         
       ],
 

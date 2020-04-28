@@ -75,7 +75,7 @@
       <q-tabs shrink inline-label >
         <q-btn-dropdown  menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" label="saved" style="height:100%"  flat dense   >
         <template v-slot:label >
-        <q-badge   color="red" class="resp-badge" >{{bookmarked}}</q-badge>
+        <q-badge   color="teal" class="resp-badge" >{{bookmarked}}</q-badge>
         </template>
         <q-list v-if="bookmarked" style="width:300px" class="q-mx-md" separator padding>
           <q-item v-for="article in bookmarkedArticles" :key="article.title">
@@ -83,21 +83,29 @@
               <span  class="bookmark-text text-weight-medium">{{article.title}}</span>
             </q-item-section>
             <q-item-section side>
-               <q-btn @click="removeBookmark({id:article.id,category:article.category})" icon="fa fa-trash" round flat color="red" size="10px"></q-btn>
+               <q-btn @click="removeBookmark({id:article.id,category:article.category})" icon="fa fa-trash" round flat color="teal" size="10px"></q-btn>
             </q-item-section>
           </q-item>
         </q-list>
         </q-btn-dropdown>
       
         <q-route-tab  class="resp-tab resp-tab-noti" icon="notifications" to="/notifications">
-        <q-badge  color="red" class="resp-badge">5</q-badge>
+        <q-badge  color="teal" class="resp-badge">5</q-badge>
         </q-route-tab>
-        <q-route-tab to="/user">
-          <q-avatar >
-            <img  src="https://cdn.quasar.dev/img/avatar.png">
-          </q-avatar>
-          <span  class="text-weight-medium q-ml-sm">Abdullah Sohail</span>
-        </q-route-tab>
+        <q-btn-dropdown  content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName" style="height:100%"  flat  dropdown-icon="settings"  >
+          <q-list   separator >
+            <q-item  @click="logoutUser" clickable>
+              <q-item-section avatar="">
+                  <q-icon  color="teal" name="fas fa-sign-out-alt"></q-icon>
+              </q-item-section>
+              <q-item-section>
+              <span class="text-weight-medium">Sign Out</span>
+            </q-item-section>
+            
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+
       </q-tabs>
       </div>
     </q-toolbar>
@@ -118,11 +126,17 @@ export default {
     },
     bookmarkedArticles:function(){
      return this.$store.getters.getReadingList
+    },
+    userName:function(){
+      return this.$store.getters.getCurrentUser.displayName;
     }
   },
   methods:{
     removeBookmark:function(payload){
       this.$store.dispatch('unbookmark',payload);
+    },
+    logoutUser:function(){
+      this.$store.dispatch('logOut');
     }
   }
 }
