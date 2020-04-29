@@ -8,7 +8,7 @@
           transition-show="scale"
           transition-hide="scale"
         >
-          Bookmark
+          {{!bookmarked?'Save':'Unsave'}}
         </q-tooltip>
         </q-btn>
         <div class="absolute-bottom q-img-caption">
@@ -75,10 +75,16 @@
         return 'q-img-caption-title-sm';
       },
       bookmarked:function(){
-      if(this.$store.getters.getReadingList
-       .findIndex(obj=>obj.category==this.article.category && obj.id==this.article.id)==-1)
-      return false;
-      return true;
+        const readingList=this.$store.getters.getReadingList;
+        const index=readingList.findIndex((article)=>{
+          if(
+            article.category==this.article.category
+            && article.author==this.article.author
+            && article.title==this.article.title)
+          return true;
+        });
+       
+        return (index == -1) ? false : true;
       }
     },
     methods:{
@@ -88,7 +94,7 @@
         }
         else
         {
-          this.$store.dispatch('unbookmark',{id:this.article.id,category:this.article.category});
+          this.$store.dispatch('unbookmark',this.article);
         }
       }
     }

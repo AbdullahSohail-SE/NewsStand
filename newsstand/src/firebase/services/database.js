@@ -10,9 +10,6 @@ export const realtimeDb=()=>{
 export const realtimeDbREST=()=>{
   return axios.create(
     {
-      baseURL:"https://newsstand-656d8.firebaseio.com/",
-      params:{
-      key:"AIzaSyDhFkzU_XvM_7TPxF05yZaueDElpnvWRWc"
-      }
+      baseURL:"https://newsstand-656d8.firebaseio.com/"
     })
 }

@@ -83,7 +83,7 @@
               <span  class="bookmark-text text-weight-medium">{{article.title}}</span>
             </q-item-section>
             <q-item-section side>
-               <q-btn @click="removeBookmark({id:article.id,category:article.category})" icon="fa fa-trash" round flat color="teal" size="10px"></q-btn>
+               <q-btn @click="removeBookmark(article)" icon="fa fa-trash" round flat color="teal" size="10px"></q-btn>
             </q-item-section>
           </q-item>
         </q-list>
