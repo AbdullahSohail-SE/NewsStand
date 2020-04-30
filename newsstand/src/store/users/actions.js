@@ -13,12 +13,27 @@ export function logInUser ({commit,dispatch},payload) {
         })
         .then(resp=>{
           commit('setCurrentUser',resp.data);
+          dispatch('syncNotifications');
           dispatch('pushLocalStorage',{ data:resp.data, expiresIn:3600});
           dispatch('syncData');
           this.$router.push('/');
         })
   
 }
+export function syncNotifications({state,commit,dispatch},payload){
+  const source=new EventSource('https://newsstand-656d8.firebaseio.com/Notifications/'+ state.currentUser.userId +'.json');
+  source.addEventListener("put", function (e) {
+    const parsedResponse=JSON.parse(e.data);
+    if(parsedResponse.path=="/")
+    commit('setNotifications',parsedResponse.data);
+    else if(parsedResponse.data==null)
+    commit('deleteNotification',parsedResponse);
+    else
+    commit('addNotification',parsedResponse);
+
+  }, false);
+}
+
 export function pushLocalStorage(context,payload){
   const now=new Date();
   const expirationDate=new Date(now.getTime() + payload.expiresIn * 1000);

@@ -88,10 +88,19 @@
           </q-item>
         </q-list>
         </q-btn-dropdown>
+        <q-btn-dropdown icon="notifications" menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" style="height:100%"  flat  >
+        <template v-slot:label >
+        <q-badge   color="teal" class="resp-badge" >{{notificationsCount}}</q-badge>
+        </template>
+        <q-list style="width:200px" class="q-mx-md" separator padding>
+          <q-item v-for="notification in notifications" :key="Object.keys(notification)[0]">
+            <q-item-section>
+              <span  class="bookmark-text text-weight-medium">{{notification[Object.keys(notification)[0]]}}</span>
+            </q-item-section>
+          </q-item>
+        </q-list>
+        </q-btn-dropdown>
       
-        <q-route-tab  class="resp-tab resp-tab-noti" icon="notifications" to="/notifications">
-        <q-badge  color="teal" class="resp-badge">5</q-badge>
-        </q-route-tab>
         <q-btn-dropdown  content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName" style="height:100%"  flat  dropdown-icon="settings"  >
           <q-list   separator >
             <q-item  @click="logoutUser" clickable>
@@ -125,10 +134,17 @@ export default {
      return this.$store.getters.getNumberReadingList;
     },
     bookmarkedArticles:function(){
-     return this.$store.getters.getReadingList
+     return this.$store.getters.getReadingList;
+     
     },
     userName:function(){
       return this.$store.getters.getCurrentUser.displayName;
+    },
+    notificationsCount:function(){
+      return this.$store.getters.getNumberNotifications;
+    },
+    notifications:function(){
+      return this.$store.getters.getNotifications;
     }
   },
   methods:{
@@ -153,6 +169,7 @@ content: url('~assets/catogaries.svg');
     transform:translateX(-50%) translateY(-50%);
     
 }
+
 @media only screen and (min-width:"1440px") {
   .resp-tab{
     width: 5rem;
