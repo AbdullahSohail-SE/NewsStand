@@ -105,20 +105,9 @@ export default {
 
     }
   },
-  // computed:{
-  //   loggedIn:function(){
-  //     return this.$store.getters.getCurrentUserToken ? true : false;
-  //   }
-  // },
-  // watch:{
-  //   loggedIn:function(newVal){
-  //     if (newVal)
-  //     this.$router.push('/ ').catch(error=>console.log(error));
-  //   }
-  // },
   methods:{
     logIn:function(){
-      this.$store.dispatch('logInUser',{email:this.email,password:this.password});
+      this.$store.dispatch('logInUser',{email:this.email,password:this.password})
     }
   }
   

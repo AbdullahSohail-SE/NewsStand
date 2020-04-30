@@ -5,7 +5,8 @@ export function setCurrentUser (state,payload) {
 }
 
 
-export function logOutUser (state,payload){
+export function logOutUser (state){
+ 
   state.currentUser={};
   localStorage.clear();
   this.$router.replace('/users/signIn');

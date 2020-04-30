@@ -14,6 +14,7 @@ export function logInUser ({commit,dispatch},payload) {
         .then(resp=>{
           commit('setCurrentUser',resp.data);
           dispatch('pushLocalStorage',{ data:resp.data, expiresIn:3600});
+          dispatch('syncData');
           this.$router.push('/');
         })
   
@@ -41,8 +42,10 @@ export function autoLogin(context,payload){
   // context.dispatch('tokenExpireLogout',expirationTime);
 }
 
-export function logOut({commit}){
-  commit('logOutUser');
+export function logOut(context){
+
+  context.commit('clearReadingList');
+  context.commit('logOutUser');
 }
 
 export function tokenExpireLogout({commit},payload){

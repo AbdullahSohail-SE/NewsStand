@@ -12,4 +12,7 @@ export function deleteReadLater(state, payload) {
   state.readingList.splice(index,1);
 
 }
+export function clearReadingList(state){
+state.readingList.length=0;
+}
 
