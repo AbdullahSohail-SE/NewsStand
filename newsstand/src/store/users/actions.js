@@ -30,7 +30,7 @@ export function syncNotifications({state,commit,dispatch},payload){
     commit('deleteNotification',parsedResponse);
     else
     commit('addNotification',parsedResponse);
-
+    console.log(e);
   }, false);
 }
 
@@ -60,6 +60,7 @@ export function autoLogin(context,payload){
 export function logOut(context){
 
   context.commit('clearReadingList');
+  context.commit('clearNotifications');
   context.commit('logOutUser');
 }
 

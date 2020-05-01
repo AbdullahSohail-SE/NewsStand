@@ -4,6 +4,7 @@ import main from './modules/main'
 import catogaries from './catogaries/index'
 import common from './common/index'
 import users from './users/index'
+import search from './search/index'
 
 
 // import example from './module-example'
@@ -26,7 +27,8 @@ export default function (/* { ssrContext } */) {
       main,
       catogaries,
       common,
-      users
+      users,
+      search
     },
 
     // enable strict mode (adds overhead!)

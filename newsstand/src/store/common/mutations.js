@@ -1,6 +1,6 @@
 
 export function setNotifications (state, payload) {
- 
+
   for (var key in payload) {
     if (payload.hasOwnProperty(key)) {
       state.notifications.push({[key]:payload[key]});
@@ -33,4 +33,8 @@ export function deleteNotification(state,payload){
 }
 export function addNotification(state,payload){
    state.notifications.push({[payload.path.replace("/","")]:payload.data});
+}
+
+export function clearNotifications(state,payload){
+  state.notifications.length=0;
 }

@@ -61,9 +61,9 @@
             </div>
           </div>
       </q-btn-dropdown>
-      <q-input  dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" class="q-ml-md ">
+      <q-input dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" class="q-ml-md ">
           <template v-slot:append>
-            <q-icon name="search" />
+            <q-icon name="search" @click="searchNews"></q-icon>
           </template>
       </q-input>
       </div>
@@ -153,6 +153,10 @@ export default {
     },
     logoutUser:function(){
       this.$store.dispatch('logOut');
+    },
+    searchNews:function(){
+      this.$store.dispatch('searchNews',this.searchQuery);
+      this.$router.push({ name: 'search', params: { query: this.searchQuery } });
     }
   }
 }

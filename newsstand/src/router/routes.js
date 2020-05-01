@@ -15,6 +15,11 @@ const routes = [{
         path: '/categories/:type',
         component: () => import('pages/Categories.vue'),
        
+      },
+      {
+        name: "search",
+        path: "/search/:query",
+        component:() => import ('pages/search.vue')
       }
     ],
     meta: { requiresAuth: true }
