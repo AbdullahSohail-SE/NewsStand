@@ -36,5 +36,5 @@ export function addNotification(state,payload){
 }
 
 export function clearNotifications(state,payload){
-  state.notifications.length=0;
+  state.notifications.splice(0,state.notifications.length);
 }

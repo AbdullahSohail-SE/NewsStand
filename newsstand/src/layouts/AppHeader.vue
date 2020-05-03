@@ -19,25 +19,13 @@
         <q-route-tab class="resp-tab"  label="Business" :to="{name:'categories',params:{type:'business'}}" exact></q-route-tab>
       </q-tabs>
       <q-btn-dropdown menu-anchor="bottom middle" menu-self="top middle" content-class="menu"  flat dense dropdown-icon="none" class="icon_catogary">
-          <div class="row q-pa-md text-weight-medium" style="width:430px">
+          <div class="row q-pa-md text-weight-medium" style="width:200px">
+    
             <div class="col">
               <q-list>
-                <q-item >
-                  <q-item-section class="cursor-pointer">Coronavirus</q-item-section>
-                </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">U.S</q-item-section>
-                </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">U.K</q-item-section>
-                </q-item>
                 <q-item :to="{name:'categories',params:{type:'health'}}" class="cursor-pointer">
                   <q-item-section >Health</q-item-section>
                 </q-item>
-              </q-list>
-            </div>
-            <div class="col">
-              <q-list>
                 <q-item :to="{name:'categories',params:{type:'entertainment'}}">
                   <q-item-section class="cursor-pointer">
                     Entertainment
@@ -53,9 +41,7 @@
                     Technology
                   </q-item-section>
                 </q-item>
-                <q-item >
-                  <q-item-section class="cursor-pointer">2020 Elections</q-item-section>
-                </q-item>
+        
               </q-list>
               
             </div>
@@ -88,11 +74,11 @@
           </q-item>
         </q-list>
         </q-btn-dropdown>
-        <q-btn-dropdown icon="notifications" menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" style="height:100%"  flat  >
+        <q-btn-dropdown @before-hide="notificationsRead" icon="notifications" menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" style="height:100%"  flat  >
         <template v-slot:label >
-        <q-badge   color="teal" class="resp-badge" >{{notificationsCount}}</q-badge>
+        <q-badge  color="teal" class="resp-badge" >{{notificationsCount}}</q-badge>
         </template>
-        <q-list style="width:200px" class="q-mx-md" separator padding>
+        <q-list v-if="notificationsCount" style="width:200px" class="q-mx-md" separator padding>
           <q-item v-for="notification in notifications" :key="Object.keys(notification)[0]">
             <q-item-section>
               <span  class="bookmark-text text-weight-medium">{{notification[Object.keys(notification)[0]]}}</span>
@@ -155,8 +141,13 @@ export default {
       this.$store.dispatch('logOut');
     },
     searchNews:function(){
-      this.$store.dispatch('searchNews',this.searchQuery);
+      if(this.searchQuery=="" || this.searchQuery == " ")
+      return;
       this.$router.push({ name: 'search', params: { query: this.searchQuery } });
+      this.searchQuery="";
+    },
+    notificationsRead:function(evt){
+      this.$store.dispatch('notificationsRead');
     }
   }
 }

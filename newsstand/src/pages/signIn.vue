@@ -75,7 +75,7 @@
   <div class="col-3 row bg-teal items-center justify-center">
     <div class=" text-center" style="height:80%;width:80%">
       <h5 class="text-white">Sign In</h5>
-       <q-input filled label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" >
+       <q-input filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" >
         <template v-slot:prepend>
           <q-icon color="teal" name="mail" />
         </template>

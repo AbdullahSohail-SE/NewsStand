@@ -7,6 +7,11 @@ export function AddToReadingList ({commit,getters},payload)  {
   })
   
 }
+export function notificationsRead({commit,getters},payload){
+  const userId=getters.getCurrentUser.userId;
+  this._vm.$firebaseDbREST.delete('Notifications/' + userId + '.json');
+  commit('clearNotifications');
+}
 export function unbookmark({commit,getters},payload){
   const userId=getters.getCurrentUser.userId;
   this._vm.$firebaseDbREST

@@ -30,7 +30,6 @@ export function syncNotifications({state,commit,dispatch},payload){
     commit('deleteNotification',parsedResponse);
     else
     commit('addNotification',parsedResponse);
-    console.log(e);
   }, false);
 }
 

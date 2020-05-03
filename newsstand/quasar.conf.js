@@ -82,7 +82,9 @@ module.exports = function (ctx) {
         'QTooltip',
         'QCarousel',
         'QCarouselControl',
-        'QCarouselSlide'
+        'QCarouselSlide',
+        'QInfiniteScroll',
+        'QSpinnerDots'
         
       ],
 
