@@ -93,7 +93,7 @@ module.exports = function (ctx) {
       ],
 
       // Quasar plugins
-      plugins: ['Intersection']
+      plugins: ['Intersection','Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie

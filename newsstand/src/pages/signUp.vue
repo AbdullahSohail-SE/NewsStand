@@ -6,18 +6,22 @@
         <p class="text-subtle-grey">...to be informed </p>
       </q-card-section>
       <q-card-section>
-        <q-input class="q-my-sm" filled label="Name" v-model="name" label-color="teal" bg-color="white" color="teal" type="text">
+        <q-input ref="nameInput" class="q-my-sm" filled label="Name" v-model="name" label-color="teal" bg-color="white" color="teal" type="text" :rules="[val => !!val || 'Field is required']">
           <template v-slot:prepend>
             <q-icon color="teal" name="person" />
           </template>
         </q-input>
-        <q-input class="q-my-sm" filled label="Email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email">
+        <q-input ref="emailInput" lazy-rules class="q-my-sm" filled label="Email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required',validateEmail]">
           <template v-slot:prepend>
             <q-icon color="teal" name="mail" />
           </template>
         </q-input>
-        <q-input class="q-my-sm" filled label="Password" v-model="password" label-color="teal" bg-color="white"
-          color="teal" type="password">
+        <q-input ref="passwordInput" class="q-my-sm" filled label="Password" v-model="password" label-color="teal" bg-color="white"
+          color="teal" type="password" 
+          :rules="[
+          val => !!val || 'Field is required',
+          val => val.length >= 6 || 'Please use atleast 6 characters'
+          ]">
           <template v-slot:prepend>
             <q-icon color="teal" name="vpn_key" />
           </template>
@@ -31,6 +35,7 @@
 </template>
 
 <script>
+import { required,email } from 'vuelidate/lib/validators'
   export default {
     data() {
       return {
@@ -42,7 +47,38 @@
     },
     methods:{
       signUp:function(){
+        
+        const nameInput=this.$refs.nameInput;
+        const emailInput=this.$refs.emailInput;
+        const passwordInput=this.$refs.passwordInput;
+        
+        nameInput.validate();
+        emailInput.validate();
+        passwordInput.validate();
+
+        if(nameInput.hasError || emailInput.hasError || passwordInput.hasError)
+          return;
+          
+        if(this.$refs)
+
         this.$store.dispatch('signUpUser',{email:this.email,password:this.password,displayName:this.name});
+      },
+      validateEmail:function(val){
+        return new Promise((resolve,reject)=>{
+          if(!val.includes("@")){
+            resolve("*Please type a valid email");
+            return;
+            }
+          this.$firebaseDbREST.get('Users.json?orderBy="email"&equalTo="'+val+'"')
+          .then((res)=>{
+            if(!Object.keys(res.data).length == 0){
+            resolve("*This email address has already been registered");
+            return;
+            }
+            else
+            resolve();
+          })
+        })
       }
     }
   }

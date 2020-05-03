@@ -75,12 +75,12 @@
   <div class="col-3 row bg-teal items-center justify-center">
     <div class=" text-center" style="height:80%;width:80%">
       <h5 class="text-white">Sign In</h5>
-       <q-input filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" >
+       <q-input ref="emailInput" filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required']" >
         <template v-slot:prepend>
           <q-icon color="teal" name="mail" />
         </template>
       </q-input>
-       <q-input class="q-my-sm" filled label="password" v-model="password" label-color="teal" bg-color="white" color="teal" type="password" >
+       <q-input ref="passwordInput" class="q-my-sm" filled label="password" v-model="password" label-color="teal" bg-color="white" color="teal" type="password" :rules="[val => !!val || 'Field is required']">
         <template v-slot:prepend>
           <q-icon color="teal" name="vpn_key" />
         </template>
@@ -89,12 +89,13 @@
       <span style="display:block" class="text-white q-mt-lg q-mb-sm">OR</span>
       <router-link  class="text-white hover" to="/users/signUp">Create an account</router-link>
     </div>
-    <!-- <span v-if="false">{{loggedIn}}</span> -->
+   
   </div>
   
 </q-page>
 </template>
 <script>
+
 export default {
   data(){
     return {
@@ -107,10 +108,9 @@ export default {
   },
   methods:{
     logIn:function(){
-      this.$store.dispatch('logInUser',{email:this.email,password:this.password})
+      this.$store.dispatch('logInUser',{email:this.email,password:this.password});
     }
   }
-  
 }
 </script>
 <style lang="scss" scoped>
