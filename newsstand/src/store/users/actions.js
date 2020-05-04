@@ -35,7 +35,9 @@ export function logInUser ({commit,dispatch},payload) {
         
   
 }
-export function syncNotifications({state,commit},payload){
+export function syncNotifications({state,commit}){
+  if (state.currentUser == null || state.currentUser == undefined)
+  return;
   const source=new EventSource('https://newsstand-656d8.firebaseio.com/Notifications/'+ state.currentUser.userId +'.json');
   source.addEventListener("put", function (e) {
     const parsedResponse=JSON.parse(e.data);
@@ -75,6 +77,7 @@ export function logOut({ commit }){
 
   commit('clearReadingList');
   commit('clearNotifications');
+  commit('clearIndex');
   commit('logOutUser');
 }
 

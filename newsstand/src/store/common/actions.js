@@ -25,6 +25,8 @@ export function unbookmark({commit,getters},payload){
   })
 }
 export function syncData({getters,commit}){
+  if (getters.getCurrentUser == null || getters.getCurrentUser == undefined)
+  return;
   const userId=getters.getCurrentUser.userId;
   this._vm.$firebaseDbREST.get('Saved/' + userId + '.json')
   .then(resp=>{

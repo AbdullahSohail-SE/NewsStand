@@ -19,7 +19,7 @@
           <p v-if="content" class="q-img-caption-desc">{{article.content}}</p>
         </div>
         <template v-slot:loading>
-          <span class="text-weight-medium q-mr-md text-primary" >Loading Image</span>
+          <span class="text-weight-medium q-mr-md">Loading Image</span>
           <q-spinner-oval size="1em" color="primary"></q-spinner-oval>
         </template>
       </q-img>

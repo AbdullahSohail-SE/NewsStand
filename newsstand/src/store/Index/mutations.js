@@ -9,6 +9,20 @@ export function setCoronaLatest(state, payload) {
   state.coronaLatest.push(...knuthShuffle(payload));
 }
 
+export function clearIndex(state,payload){
+  Object.keys(state).forEach(key=>{
+    if(Object.keys(state[key]).length == 3)
+    {
+      let regionArray = state[key];
+      Object.keys(regionArray).forEach(k=>{
+        regionArray[k].splice(0,regionArray[k].length);
+      })
+    }
+    else
+    state[key].splice(0,state[key].length);
+  })
+}
+
 function knuthShuffle(arr) {
   arr.forEach((element, index) => {
     if (!element.urlToImage) {
