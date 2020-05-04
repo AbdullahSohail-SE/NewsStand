@@ -2,7 +2,7 @@
   <q-card :class="cardSize" flat square>
     <q-skeleton v-if="!dataFetched" :class="cardSize" square></q-skeleton>
     <div :class="cardSize" v-else>
-      <q-img :src="article.urlToImage" height="100%" spinner-color="primary">
+      <q-img :src="article.urlToImage" height="100%" >
         <q-btn @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
           <q-tooltip
           transition-show="scale"
@@ -18,6 +18,10 @@
           <p v-if="description" class="q-img-caption-desc">{{article.description}}</p>
           <p v-if="content" class="q-img-caption-desc">{{article.content}}</p>
         </div>
+        <template v-slot:loading>
+          <span class="text-weight-medium q-mr-md text-primary" >Loading Image</span>
+          <q-spinner-oval size="1em" color="primary"></q-spinner-oval>
+        </template>
       </q-img>
     </div>
   </q-card>
@@ -26,7 +30,7 @@
   export default {
     data() {
       return {
-        dataFetched: true
+        dataFetched: false
       }
     },
     props: {
@@ -51,10 +55,8 @@
       }
     },
     watch: {
-      article: function (newVal) {
-        if (newVal == undefined) {
-          this.dataFetched = false;
-        }
+      article:function(newVal){
+        Object.keys(newVal).length > 0 ? this.dataFetched = true : this.dataFetched = false;
       }
     },
     computed: {

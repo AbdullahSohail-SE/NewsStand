@@ -1,8 +1,7 @@
 <template>
   <q-card class="q-py-sm" square flat>
     <div v-if="!dataFetched">
-      <q-skeleton square height="330px"></q-skeleton>
-      <q-skeleton type="text" square height="150px"></q-skeleton>
+      <q-skeleton v-if="dataFetched" style="height:330px" square></q-skeleton>
     </div>
     
     <div class="custom" ref="custom" v-else>
@@ -15,6 +14,10 @@
           {{!bookmarked?'Save':'Unsave'}}
         </q-tooltip>
         </q-btn>
+        <template v-slot:loading>
+          <span class="text-weight-medium q-mr-md text-primary" >Loading Image</span>
+          <q-spinner-oval size="1em" color="primary"></q-spinner-oval>
+        </template>
       </q-img>
       <q-card-section class="q-px-none customContainer">
         <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}</h6>
@@ -34,7 +37,7 @@
   export default {
     data() {
       return {
-        dataFetched: true
+        dataFetched: false
       }
     },
     computed:{
@@ -93,10 +96,12 @@
        type:String
       }
     },
-    watch: {
-      article: function (newVal) {
-        if (newVal == undefined)
-          this.dataFetched = false;
+    created:async function(){
+      
+    },
+    watch:{
+      article:function(newVal){
+        Object.keys(newVal).length > 0 ? this.dataFetched = true : this.dataFetched = false;
       }
     },
     methods:{

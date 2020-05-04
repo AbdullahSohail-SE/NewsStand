@@ -5,19 +5,19 @@ import {Notify} from 'quasar'
 const instance=axios.create({
   baseURL:"http://newsapi.org/v2",
   params:{
-    apiKey:"65517718757b4edf826bca9a0d8c5bcf"
+    apiKey:"9768e0e22f7e495494ed89aec5a63180"
   }
 });
 
-// instance.interceptors.response.use((config)=>config,error=>{
+instance.interceptors.response.use((config)=>config,error=>{
   
-//   if(error.response.status==400)
-//   Notify.create({
-//     type:"negative",
-//     message:"Hello there!"
-//   });
-
-// });
+  if(error.response.status==400)
+  Notify.create({
+    type:"negative",
+    message:"Hello there!"
+  });
+  return Promise.reject(error);
+});
 
 Vue.prototype.$axios = instance;
 

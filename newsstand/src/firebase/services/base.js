@@ -1,5 +1,4 @@
-import firebase from 'firebase/app'
-import  'firebase/auth'
+
 import axios from 'axios'
 
 
@@ -13,10 +12,4 @@ export const auth = () => {
   })
 };
 
-export const authSDK = () => {
-  return firebase.auth();
-}
 
-export const fBInit = (config) => {
-  return firebase.initializeApp(config)
-}

@@ -1,11 +1,8 @@
-import firebase from 'firebase/app'
-import 'firebase/database'
+
 import axios from 'axios'
 
 
-export const realtimeDb=()=>{
-  return firebase.database();
-}
+
 
 export const realtimeDbREST=()=>{
   return axios.create(

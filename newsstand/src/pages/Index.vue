@@ -16,7 +16,7 @@
         <div class="col-12">
           <q-item-label class="q-px-none" header>More News</q-item-label>
         </div>
-        <div class="col-4 q-pr-md">
+        <div style="margin-top:-8px" class="col-4 q-pr-md">
           <newslist :articles="topArticles.slice(3)"></newslist>
         </div>
         <div class="col-5">

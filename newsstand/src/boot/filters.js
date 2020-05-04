@@ -1,6 +1,4 @@
-// import something here
 
-// "async" is optional
 export default async ({ Vue }) => {
   Vue.filter('formattedDate',function(value){
       
