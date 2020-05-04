@@ -1,6 +1,9 @@
 <template>
   <q-header>
-    <q-toolbar class=" row bg-white text-black">
+    
+    <!-- desktop-version -->
+
+    <q-toolbar class="desktop-only row bg-white text-black">
       <div class="col-2 row items-center no-wrap">
       <q-avatar font-size="42px" size="54px" text-color="teal">
         <i class="fab fa-hubspot"></i>
@@ -103,6 +106,74 @@
 
       </q-tabs>
       </div>
+    </q-toolbar>
+
+    <!-- mobile version for better understanding -->
+    <div style="position:relative" class="bg-teal mobile-only">
+      <div style="height:3rem" class="col-2 row items-center justify-center no-wrap">
+      <q-avatar font-size="2rem" size="2.5rem" text-color="white">
+        <i class="fab fa-hubspot"></i>
+      </q-avatar>
+    
+      <span class="text-weight-medium text-white">NewsStand</span>
+      </div>
+    </div>
+    <q-toolbar class="items-stretch mobile-only bg-white ">
+      
+      <div class="col-12 row items-center justify-between">
+        <q-btn flat round dense icon="fas fa-bars" color="teal" />
+        <q-btn flat size="lg"  dense icon="search" color="teal" />
+     
+
+      
+        
+        <q-btn-dropdown   menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" text-color="teal" icon="bookmark" dropdown-icon=" " style="height:100%;overflow:hidden;width:3rem"  flat dense   >
+        <template v-slot:label >
+        <q-badge   color="teal" class="resp-badge" >{{bookmarked}}</q-badge>
+        </template>
+        <q-list v-if="bookmarked" style="width:15rem" class="q-mx-md" separator padding>
+          <q-item v-for="article in bookmarkedArticles" :key="article.title">
+            <q-item-section>
+              <span  class="bookmark-text text-weight-medium">{{article.title}}</span>
+            </q-item-section>
+            <q-item-section side>
+               <q-btn @click="removeBookmark(article)" icon="fa fa-trash" round flat color="teal" size="10px"></q-btn>
+            </q-item-section>
+          </q-item>
+        </q-list>
+        </q-btn-dropdown>
+
+
+        <q-btn-dropdown  @before-hide="notificationsRead" dropdown-icon=" " icon="notifications" menu-anchor="bottom middle" color="teal" menu-self="top middle" content-class="bookmarks" style="height:100%;overflow:hidden;width:3rem" dense  flat  >
+        <template v-slot:label >
+        <q-badge  color="teal" class="resp-badge" >{{notificationsCount}}</q-badge>
+        </template>
+        <q-list v-if="notificationsCount" style="width:200px" class="q-mx-md" separator padding>
+          <q-item v-for="notification in notifications" :key="Object.keys(notification)[0]">
+            <q-item-section>
+              <span  class="bookmark-text text-weight-medium">{{notification[Object.keys(notification)[0]]}}</span>
+            </q-item-section>
+          </q-item>
+        </q-list>
+        </q-btn-dropdown>
+
+        <q-btn-dropdown  color="teal" content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName" style="height:100%;overflow:hidden;width:6rem" dropdown-icon=" " flat   >
+          <q-list   separator >
+            <q-item  @click="logoutUser" clickable>
+              <q-item-section avatar="">
+                  <q-icon  color="teal" name="fas fa-sign-out-alt"></q-icon>
+              </q-item-section>
+              <q-item-section>
+              <span class="text-weight-medium">Sign Out</span>
+            </q-item-section>
+            
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+
+
+      </div>
+      
     </q-toolbar>
     
   </q-header>
