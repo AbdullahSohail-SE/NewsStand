@@ -9,7 +9,7 @@ export function setCoronaLatest(state, payload) {
   state.coronaLatest.push(...knuthShuffle(payload));
 }
 
-export function clearIndex(state,payload){
+export function clearIndex(state){
   Object.keys(state).forEach(key=>{
     if(Object.keys(state[key]).length == 3)
     {

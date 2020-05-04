@@ -21,13 +21,13 @@ export function logInUser ({commit,dispatch},payload) {
         .catch(err=>{
           if(err.response.data.error.message=="INVALID_PASSWORD")
           Notify.create({
-                color:"primary",
+                color:"negative",
                 message:"Incorrect Password!",
                 icon:"lock"
             });
           if(err.response.data.error.message=="EMAIL_NOT_FOUND")
           Notify.create({
-            color:"primary",
+            color:"negative",
             message:"Invalid Email!",
             icon:"mail"
               });

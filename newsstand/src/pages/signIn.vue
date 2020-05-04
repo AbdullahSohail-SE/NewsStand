@@ -75,7 +75,7 @@
   <div class="col-3 row bg-teal items-center justify-center">
     <div class=" text-center" style="height:80%;width:80%">
       <h5 class="text-white">Sign In</h5>
-       <q-input ref="emailInput" filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required']" >
+       <q-input ref="emailInput" filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required',val => val.includes('@') || 'Type an email like abc@gmail.com']" >
         <template v-slot:prepend>
           <q-icon color="teal" name="mail" />
         </template>
@@ -85,7 +85,7 @@
           <q-icon color="teal" name="vpn_key" />
         </template>
       </q-input>
-      <q-btn @click="logIn" outline="" class="q-mt-lg"  label="Log In" size="md" text-color="white"  color="white"></q-btn>
+      <q-btn ref="signInBtn" @click="logIn" outline="" class="q-mt-lg"  label="Log In" size="md" text-color="white"  color="white"></q-btn>
       <span style="display:block" class="text-white q-mt-lg q-mb-sm">OR</span>
       <router-link  class="text-white hover" to="/users/signUp">Create an account</router-link>
     </div>
@@ -108,6 +108,15 @@ export default {
   },
   methods:{
     logIn:function(){
+      const emailInput=this.$refs.emailInput;
+      const passwordInput=this.$refs.passwordInput;
+
+      emailInput.validate();
+      passwordInput.validate();
+
+      if(emailInput.hasError || passwordInput.hasError)
+      return;
+      
       this.$store.dispatch('logInUser',{email:this.email,password:this.password});
     }
   }

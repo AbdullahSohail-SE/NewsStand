@@ -11,6 +11,7 @@ export function LoadTopAroundTheGlobe({
         }
       })
       .then(response => response.data.sources.map(source => source.id))
+      
   }
   const populateTopAroundTheGlobe = (sources) => {
     this._vm.$axios.get('/top-headlines', {
@@ -22,6 +23,7 @@ export function LoadTopAroundTheGlobe({
         assignIds(response.data.articles, 'topAroundTheGlobe');
         commit('setTopAroundTheGlobe', response.data.articles)
       })
+      
   }
 
   fetchEnglishSources().then(populateTopAroundTheGlobe);
@@ -42,6 +44,7 @@ export function LoadCoronaLatest({
       assignIds(response.data.articles, 'coronavirusLatest');
       commit('setCoronaLatest', response.data.articles);
     })
+    
 
 }
 export function LoadRegionsLatest({
@@ -76,6 +79,7 @@ export function LoadRegionsLatest({
           region,
           data: response.data.articles
         })
+        
       })
     else
       alert('empty source!');
