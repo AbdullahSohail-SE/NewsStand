@@ -7,7 +7,7 @@ export function AddToReadingList ({commit,getters},payload)  {
   })
   
 }
-export function notificationsRead({commit,getters},payload){
+export function notificationsRead({commit,getters}){
   const userId=getters.getCurrentUser.userId;
   this._vm.$firebaseDbREST.delete('Notifications/' + userId + '.json');
   commit('clearNotifications');
@@ -24,7 +24,7 @@ export function unbookmark({commit,getters},payload){
     commit('deleteReadLater',payload);
   })
 }
-export function syncData({getters,commit},payload){
+export function syncData({getters,commit}){
   const userId=getters.getCurrentUser.userId;
   this._vm.$firebaseDbREST.get('Saved/' + userId + '.json')
   .then(resp=>{

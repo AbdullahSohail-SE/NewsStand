@@ -35,6 +35,6 @@ export function addNotification(state,payload){
    state.notifications.push({[payload.path.replace("/","")]:payload.data});
 }
 
-export function clearNotifications(state,payload){
+export function clearNotifications(state){
   state.notifications.splice(0,state.notifications.length);
 }

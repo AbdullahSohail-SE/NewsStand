@@ -11,9 +11,6 @@ export default {
   created(){
     this.$store.dispatch('syncNotifications');
     this.$store.dispatch('syncData');
-  },
-  destroyed(){
-    console.log('destroyed');
   }
 }
 </script>

@@ -35,7 +35,7 @@ export function logInUser ({commit,dispatch},payload) {
         
   
 }
-export function syncNotifications({state,commit,dispatch},payload){
+export function syncNotifications({state,commit},payload){
   const source=new EventSource('https://newsstand-656d8.firebaseio.com/Notifications/'+ state.currentUser.userId +'.json');
   source.addEventListener("put", function (e) {
     const parsedResponse=JSON.parse(e.data);
@@ -71,11 +71,11 @@ export function autoLogin(context,payload){
   // context.dispatch('tokenExpireLogout',expirationTime);
 }
 
-export function logOut(context){
+export function logOut({ commit }){
 
-  context.commit('clearReadingList');
-  context.commit('clearNotifications');
-  context.commit('logOutUser');
+  commit('clearReadingList');
+  commit('clearNotifications');
+  commit('logOutUser');
 }
 
 export function tokenExpireLogout({commit},payload){

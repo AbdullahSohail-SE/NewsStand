@@ -2,7 +2,12 @@
   <q-card square flat>
     <q-card-section horizontal>
       <div class="col-3">
-      <q-img :src="article.urlToImage" spinner-color="primary" height="300px" ></q-img>
+      <q-img :src="article.urlToImage" spinner-color="primary" height="300px" >
+        <template v-slot:loading>
+          <span class="text-weight-medium q-mr-md text-primary" >Loading Image</span>
+          <q-spinner-oval size="1em" color="primary"></q-spinner-oval>
+        </template>
+      </q-img>
       </div>
       <q-card-section class="row col-9 items-center" >
         <div class="col-12 ">

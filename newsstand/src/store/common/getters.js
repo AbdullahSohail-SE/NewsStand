@@ -1,15 +1,14 @@
 
 
-export function getNotifications(state, getters) {
+export function getNotifications(state) {
   return state.notifications;
 }
-export function getNumberReadingList(state, getters) {
+export function getNumberReadingList(state) {
   return state.readingList.length;
 }
-export function getNumberNotifications(state, getters) {
-    console.log("invoked");
+export function getNumberNotifications(state) {
   return state.notifications.length;
 }
-export function getReadingList(state,getters){
+export function getReadingList(state){
   return state.readingList;
 }

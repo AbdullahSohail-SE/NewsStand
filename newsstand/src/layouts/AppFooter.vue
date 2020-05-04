@@ -64,7 +64,7 @@
               </a>
           </q-item>
           <div class="q-ml-md q-mt-xl">
-            <span>* This website is for purely educational purposes and not for commercial usage.I have used the services of <a href="https://newsapi.org/" target="new" class="anchor a-external"> News API <i class="fas fa-external-link-alt"></i></a> to serve content on this site</span>
+            <span>* This website is for purely educational purposes and not for commercial usage.I have used the services of <a href="https://newsapi.org/" target="blank" class="anchor a-external"> News API <i class="fas fa-external-link-alt"></i></a> to serve content on this site</span>
           </div>
       </div>
     </div>

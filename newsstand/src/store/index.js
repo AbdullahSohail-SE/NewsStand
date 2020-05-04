@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import main from './modules/main'
+import main from './Index/index'
 import catogaries from './catogaries/index'
 import common from './common/index'
 import users from './users/index'

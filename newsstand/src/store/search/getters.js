@@ -1,6 +1,6 @@
 
 
 
-export function getSearchedList(state, getters) {
+export function getSearchedList(state) {
   return state.searchedList;
 }
