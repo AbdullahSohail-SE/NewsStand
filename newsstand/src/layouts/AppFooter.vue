@@ -3,7 +3,7 @@
   <!-- desktop-version -->
   <q-footer class="desktop-only">
     <div class="row q-pa-lg">
-      <div class="col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12 desktop-only">
+      <div class="col-4 ">
         <q-list dense>
           <q-item-label header class="text-white">Sections</q-item-label>
           <q-item>
@@ -20,7 +20,7 @@
           </q-item>
         </q-list>
       </div>
-      <div class="col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="col-4 ">
           <q-list dense>
           <q-item-label header class="text-white">About</q-item-label>
           <q-item>
@@ -46,7 +46,7 @@
       <div class="col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12">
         <q-item-label header class="text-white">Connect with us</q-item-label>
           <q-item>
-              <a href="https://www.facebook.com" class="anchor q-mr-sm" style="font-size:36px">
+              <a href="https://facebook.com/AbdullahSohail1999" class="anchor q-mr-sm" style="font-size:36px">
                 <i class="fab fa-facebook"></i>
               </a>
               <a href="https://github.com/AbdullahSohail-SE" class="anchor q-mx-sm" style="font-size:36px">
@@ -55,8 +55,8 @@
               <a href="https://www.linkedin.com/in/abdullahsohailned/?originalSubdomain=pk" class="anchor q-mx-sm" style="font-size:36px">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a class="anchor q-mx-sm" style="font-size:36px">
-                <i class="fab fa-instagram"></i>
+              <a href="mailto:abdullahsohailofficial123@gmail.com" class="anchor q-mx-sm"  style="font-size:36px">
+                <i class="fas fa-envelope"></i>
               </a>
               <a class="anchor q-mx-sm" style="font-size:36px">
                 <i class="fab fa-twitter"></i>
@@ -106,7 +106,7 @@
       <div class="col-4 q-mt-sm col-md-4 col-lg-4 col-sm-12 col-xs-12">
         <q-item-label header class="text-white"><q-icon style="margin-top:-4px" name="fas fa-heart"></q-icon> Like this? Hit that star button on github </q-item-label>
           <q-item>
-              <a href="https://www.facebook.com" class="anchor q-mr-sm" style="font-size:36px">
+              <a href="https://facebook.com/AbdullahSohail1999" class="anchor q-mr-sm" style="font-size:36px">
                 <i class="fab fa-facebook"></i>
               </a>
               <a href="https://github.com/AbdullahSohail-SE" class="anchor q-mx-sm" style="font-size:36px">
@@ -115,8 +115,8 @@
               <a href="https://www.linkedin.com/in/abdullahsohailned/?originalSubdomain=pk" class="anchor q-mx-sm" style="font-size:36px">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a class="anchor q-mx-sm" style="font-size:36px">
-                <i class="fab fa-instagram"></i>
+              <a href="mailto:abdullahsohailofficial123@gmail.com" class="anchor q-mx-sm"  style="font-size:36px">
+                <i class="fas fa-envelope"></i>
               </a>
               <a class="anchor q-mx-sm" style="font-size:36px">
                 <i class="fab fa-twitter"></i>
