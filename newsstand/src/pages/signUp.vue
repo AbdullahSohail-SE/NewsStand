@@ -11,7 +11,7 @@
             <q-icon color="teal" name="person" />
           </template>
         </q-input>
-        <q-input ref="emailInput" lazy-rules class="q-my-sm" filled label="Email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required',validateEmail]">
+        <q-input ref="emailInput" lazy-rules class="q-my-md" filled label="Email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required',validateEmail]">
           <template v-slot:prepend>
             <q-icon color="teal" name="mail" />
           </template>
@@ -29,6 +29,8 @@
       </q-card-section>
       <q-card-section class="text-center">
         <q-btn @click="signUp" outline  label="Sign Up" size="md" text-color="teal"  color="teal"></q-btn>
+        <span style="display:block" class="text-teal q-mt-lg q-mb-sm">OR</span>
+      <router-link  class="text-teal hover" to="/users/signIn">Already have an account?</router-link>
       </q-card-section>
     </q-card>
   </q-page>

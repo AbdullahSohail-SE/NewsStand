@@ -1,6 +1,6 @@
 <template>
-<q-page class="row bg-red">
-  <div class="col-9 ">
+<q-page class="row ">
+  <div class="col-9 col-lg-9 col-md-9 desktop-only col-sm-12 col-xs-12">
     <q-carousel
       animated
       v-model="slide"
@@ -72,7 +72,7 @@
       
     </q-carousel>
   </div>
-  <div class="col-3 row bg-teal items-center justify-center">
+  <div class="col-3 col-lg-3 col-md-3  col-sm-12 col-xs-12 row bg-teal items-center justify-center">
     <div class=" text-center" style="height:80%;width:80%">
       <h5 class="text-white">Sign In</h5>
        <q-input ref="emailInput" filled  label="email" v-model="email" label-color="teal" bg-color="white" color="teal" type="email" :rules="[val => !!val || 'Field is required',val => val.includes('@') || 'Type an email like abc@gmail.com']" >
