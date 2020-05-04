@@ -5,10 +5,10 @@
         <h1 class="q-ma-none app-headings text-subtle-grey">Top Around The Globe</h1>
         <span class="text-h6 text-subtle-grey" style="font-weight:500">{{ new Date()|formattedDate}}</span>
       </header>
-      <div class="col-7 q-px-xs q-py-lg">
+      <div class="col-7 col-md-7 col-lg-7 col-sm-12 col-xs-12  q-px-xs q-py-lg">
         <newscard cardType="large" :article="topArticles[0]" :captionsize="'large'"></newscard>
       </div>
-      <div class="col-5 q-px-xs q-py-lg">
+      <div class="col-5 col-md-5 col-lg-5 col-sm-12 col-xs-12 q-px-xs q-py-lg">
         <newscard class="q-mb-sm" cardType="medium" :article="topArticles[1]" :captionsize="'small'"></newscard>
         <newscard cardType="medium" :article="topArticles[2]" :captionsize="'small'"></newscard>
       </div>
@@ -16,13 +16,13 @@
         <div class="col-12">
           <q-item-label class="q-px-none" header>More News</q-item-label>
         </div>
-        <div style="margin-top:-8px" class="col-4 q-pr-md">
+        <div style="margin-top:-8px" class="col-4 col-md-4 col-lg-4 col-sm-12 col-xs-12 q-pr-md">
           <newslist :articles="topArticles.slice(3)"></newslist>
         </div>
-        <div class="col-5">
+        <div class="col-5 col-md-5 col-lg-5 col-sm-12 col-xs-12">
           <longnewscard :article="topArticles[topArticles.length-3]" description source></longnewscard>
         </div>
-        <div class="col-3 q-px-sm column">
+        <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-px-sm column">
           <div>
             <longnewscard imgHeight="200px" :article="topArticles[topArticles.length-2]" titleSize="16px">
             </longnewscard>
@@ -39,40 +39,41 @@
         <h1 class="q-my-lg app-headings text-subtle-grey">Asia Top</h1>
       </header>
       <div class="justify-between col-12 row ">
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="topArticles[0]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="asiaLatest[1]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="asiaLatest[2]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="asiaLatest[3]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="asiaLatest[4]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
-        <div class="col-2">
+        <div class="col-2 col-md-2 col-lg-2 col-sm-12 col-xs-12">
           <newscard class="q-pa-xs" :article="asiaLatest[5]" cardType="medium" captionsize="small" :description=false>
           </newscard>
         </div>
+      
       </div>
     </section>
     <section class="row items-top justify-between q-my-lg">
       <header class="col-12 q-my-lg ">
         <h1 class="q-my-sm app-headings text-subtle-grey">Europe Latest</h1>
       </header>
-      <div class="col-9 q-mt-md" >
+      <div class="col-9 col-md-9 col-lg-9 col-sm-12 col-xs-12 q-mt-md" >
         <newscard  :article="europeLatest[0]" cardType="large"></newscard>
       </div>
-      <div class="col-3 q-px-md ">
+      <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-px-md ">
         <newslist :number="9" :articles="europeLatest.slice(3)"></newslist>
       </div>
     </section>
@@ -80,16 +81,16 @@
       <header class="col-12 q-my-lg ">
         <h1 class="q-my-sm app-headings text-subtle-grey">Africa Now</h1>
       </header>
-      <div class="col-3 q-pa-xs">
+      <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-pa-xs">
         <longnewscard :article="africaLatest[0]" description source></longnewscard>
       </div>
-      <div class="col-3 q-pa-xs">
+      <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-pa-xs">
         <longnewscard :article="africaLatest[1]" description source></longnewscard>
       </div>
-      <div class="col-3 q-pa-xs">
+      <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-pa-xs">
         <longnewscard :article="africaLatest[2]" description source></longnewscard>
       </div>
-      <div class="col-3 q-pa-xs">
+      <div class="col-3 col-md-3 col-lg-3 col-sm-12 col-xs-12 q-pa-xs">
         <longnewscard :article="africaLatest[3]" description source></longnewscard>
       </div>
     </section>
