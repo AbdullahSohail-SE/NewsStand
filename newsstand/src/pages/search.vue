@@ -1,8 +1,9 @@
 <template>
-  <q-page padding>
+  <q-page >
     <section>
-      <header class="row q-mb-lg items-center">
-        <h1 class="app-headings q-mx-md text-subtle-grey">Search Results</h1>
+      <header class="row  q-mt-lg items-center">
+        <h1 class="app-headings desktop-only q-mx-md text-subtle-grey">Search Results</h1>
+        <h1 class=" mobile-only app-headings q-mx-md text-subtle-grey">Search Results</h1>
       </header>
  
       <q-list  >
@@ -10,9 +11,6 @@
             <landscapeCard :article="art"></landscapeCard>
           </q-item>
       </q-list>
-
-
-
 
     </section>
   </q-page>

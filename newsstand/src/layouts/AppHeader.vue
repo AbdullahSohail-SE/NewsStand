@@ -193,7 +193,7 @@
     <div style="position:relative;" class="row justify-center mobile-only bg-white ">
       <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search search-open" >
           <template v-slot:append>
-            <q-icon name="search" @click="searchNews"></q-icon>
+            <q-icon  name="search" @click="searchNews();toggleSearch()"></q-icon>
           </template>
       </q-input>
     </div>
@@ -239,6 +239,7 @@ export default {
       return;
       this.$router.push({ name: 'search', params: { query: this.searchQuery } });
       this.searchQuery="";
+
     },
     notificationsRead:function(evt){
       this.$store.dispatch('notificationsRead');
