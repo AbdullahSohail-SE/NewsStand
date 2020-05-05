@@ -109,7 +109,7 @@
     </q-toolbar>
 
     <!-- mobile version for better understanding -->
-    <div style="position:relative" class="bg-teal ">
+    <div ref="branding" style="position:relative" class="bg-teal mobile-only">
       <div style="height:3rem" class="col-2 row items-center justify-center no-wrap">
       <q-avatar font-size="2rem" size="2.5rem" text-color="white">
         <i class="fab fa-hubspot"></i>
@@ -119,7 +119,7 @@
       </div>
     </div>
     
-    <q-toolbar class="items-stretch  bg-white ">
+    <q-toolbar ref="mobileToolbar" class="items-stretch mobile-only bg-white ">
       
       <div class="col-12 row items-center justify-between">
         <div ref="bars" @click="toggleDrawer" class="drawer__icon"></div> <!--drawer__icon-opened-->
@@ -173,21 +173,31 @@
       </div>
       
     </q-toolbar>
-    <div ref="drawer" class="drawer  row items-center  justify-center">
-        <q-list class="text-weight-medium drawer__list">
-          <q-item active class="drawer__item" active-class="drawer__item-active">Latest</q-item>
-          <q-item class="drawer__item" active-class="drawer__item-active">General</q-item>
-          <q-item class="drawer__item" active-class="drawer__item-active">Health</q-item>
-          <q-item class="drawer__item" active-class="drawer__item-active">Entertainment</q-item>
+    <div ref="drawer" class="drawer row items-center mobile-only  justify-center">
+        <q-list @click="toggleDrawer"  class="text-weight-medium drawer__list">
+          <q-item exact  class="drawer__item text-center" to="/" active-class="drawer__item-active">
+            <q-item-section>Latest</q-item-section>
+          </q-item>
+          <q-item exact :to="{name:'categories',params:{type:'general'}}" class="drawer__item text-center" active-class="drawer__item-active">
+            <q-item-section>General</q-item-section>
+          </q-item>
+          <q-item exact :to="{name:'categories',params:{type:'health'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Health</q-item-section></q-item>
+          <q-item exact :to="{name:'categories',params:{type:'entertainment'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Entertainment</q-item-section></q-item>
+          <q-item exact :to="{name:'categories',params:{type:'sports'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Sports</q-item-section></q-item>
+          <q-item exact :to="{name:'categories',params:{type:'science'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Science</q-item-section></q-item>
+          <q-item exact :to="{name:'categories',params:{type:'business'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Business</q-item-section></q-item>
+          <q-item exact :to="{name:'categories',params:{type:'technology'}}" class="drawer__item text-center" active-class="drawer__item-active"><q-item-section>Technology</q-item-section></q-item>
+          
         </q-list>
     </div>
-    <div style="position:relative;" class="row justify-center bg-white ">
+    <div style="position:relative;" class="row justify-center mobile-only bg-white ">
       <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search search-open" >
           <template v-slot:append>
             <q-icon name="search" @click="searchNews"></q-icon>
           </template>
       </q-input>
     </div>
+    
   </q-header>
 </template>
 <script>
@@ -215,6 +225,7 @@ export default {
     notifications:function(){
       return this.$store.getters.getNotifications;
     }
+  
   },
   methods:{
     removeBookmark:function(payload){
@@ -263,6 +274,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+
+
 .search{
 
   position: absolute;
@@ -318,8 +332,11 @@ content: url('~assets/catogaries.svg');
   }
 }
 .drawer{
+  
+
+
   background-color: white;
-  height: 100vh;
+  height: calc(100vh - 5rem);
   position: fixed;
   width: 0;
   z-index: 1000;
@@ -331,20 +348,22 @@ width: 100%;
 
 }
 &__item{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: $primary;
+  width: 100%;
+  
 }
 
 &__item-active{
  
- background-color: teal;
- color: white;
-
+  transition: all .2s;
+  background-color: $primary;
+  color: white;
   
   &::before{
     content: " ";
     height: 100%;
-    background-color: teal;
+    background-color: $primary;
     width: 3px;
     position: absolute;
     left: -5px;
