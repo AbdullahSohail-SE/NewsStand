@@ -283,13 +283,10 @@ export default {
   position: absolute;
   opacity: 0;
   transition: all .4s;
-  
+  display: none;
 
   &-open{
     display: block;
-    opacity: 100;
-    
-    
   }
 }
 

@@ -2,7 +2,10 @@
   <q-list class="quasar-list" separator>
             <q-skeleton v-if="!dataFetched" class="q-mt-md " style="min-height:500px"  square><span class="ellipsis">{{newsarticles}}</span></q-skeleton>
             <q-item v-for="article in newsarticles" :key="article.url" v-else>
-                <q-item-section class="text-weight-600 hoverunderline">{{article.title}}</q-item-section>
+                <a :href="article.url">
+                <q-item-section class="text-weight-600 hoverunderline">
+                  {{article.title}}</q-item-section>
+                </a>
             </q-item>
   </q-list>
 </template>
