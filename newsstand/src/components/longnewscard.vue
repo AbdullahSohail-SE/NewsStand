@@ -22,7 +22,7 @@
       <q-card-section class="q-px-none customContainer">
         <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}</h6>
         <p  class="q-my-sm text-body-1 customDesc" v-if="description">{{article.description}}</p>
-        <p  class=" text-body-1 customContent" v-if="content">{{article.content}}</p>
+        <p  class=" text-body-1 q-my-md customContent" v-if="content">{{article.content}}</p>
         <q-btn class="q-mb-md" v-if="linkBtn" type="a" :href="article.url" label="Visit"  color="primary" unelevated="" no-caps icon-right="fas fa-external-link-square-alt" target="_blank" />
       </q-card-section>
       <q-card-section class=" row justify-between q-pa-none move-end" v-if="source">

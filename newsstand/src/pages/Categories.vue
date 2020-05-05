@@ -4,11 +4,11 @@
     <header class="col-12 q-my-lg items-center justify-between">
     <h1 class="q-mx-md q-ma-none app-headings text-subtle-grey">{{currentCategory | capitalizeFirst}} News</h1>
     </header>
-    <interactivelist  :newsarticles="generalArticles" class="col-4">
+    <interactivelist  :newsarticles="generalArticles" class="col-4 col-sm-12 col-xs-12 col-md-4 col-lg-4">
     </interactivelist>
-    <longnewscard linkBtn imgHeight="400px" class="col-8" :article="selectedArticle" content source></longnewscard>
+    <longnewscard linkBtn imgHeight="400px" class="col-8 col-sm-12 col-xs-12 col-md-8 col-lg-4" :article="selectedArticle" content source></longnewscard>
     </section>
-    
+     
   </q-page>  
 </template>
 <script>
