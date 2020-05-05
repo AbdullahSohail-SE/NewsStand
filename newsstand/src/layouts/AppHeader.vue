@@ -3,7 +3,7 @@
     
     <!-- desktop-version -->
 
-    <q-toolbar class="desktop-only row bg-white text-black">
+    <q-toolbar   class="desktop-only row bg-white text-black">
       <div class="col-2 row items-center no-wrap">
       <q-avatar font-size="42px" size="54px" text-color="teal">
         <i class="fab fa-hubspot"></i>
@@ -109,7 +109,7 @@
     </q-toolbar>
 
     <!-- mobile version for better understanding -->
-    <div style="position:relative" class="bg-teal mobile-only">
+    <div style="position:relative" class="bg-teal ">
       <div style="height:3rem" class="col-2 row items-center justify-center no-wrap">
       <q-avatar font-size="2rem" size="2.5rem" text-color="white">
         <i class="fab fa-hubspot"></i>
@@ -118,15 +118,13 @@
       <span class="text-weight-medium text-white">NewsStand</span>
       </div>
     </div>
-    <q-toolbar class="items-stretch mobile-only bg-white ">
+    
+    <q-toolbar class="items-stretch  bg-white ">
       
       <div class="col-12 row items-center justify-between">
-        <q-btn flat round dense icon="fas fa-bars" color="teal" />
-        <q-btn flat size="lg"  dense icon="search" color="teal" />
-     
-
-      
-        
+        <div ref="bars" @click="toggleDrawer" class="drawer__icon"></div> <!--drawer__icon-opened-->
+        <!-- <q-btn flat round dense icon="fas fa-bars" color="teal" /> -->
+        <q-btn @click.stop="toggleSearch" flat size="lg"  dense icon="search" color="teal" />
         <q-btn-dropdown   menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" text-color="teal" icon="bookmark" dropdown-icon=" " style="height:100%;overflow:hidden;width:3rem"  flat dense   >
         <template v-slot:label >
         <q-badge   color="teal" class="resp-badge" >{{bookmarked}}</q-badge>
@@ -175,7 +173,21 @@
       </div>
       
     </q-toolbar>
-    
+    <div ref="drawer" class="drawer  row items-center  justify-center">
+        <q-list class="text-weight-medium drawer__list">
+          <q-item active class="drawer__item" active-class="drawer__item-active">Latest</q-item>
+          <q-item class="drawer__item" active-class="drawer__item-active">General</q-item>
+          <q-item class="drawer__item" active-class="drawer__item-active">Health</q-item>
+          <q-item class="drawer__item" active-class="drawer__item-active">Entertainment</q-item>
+        </q-list>
+    </div>
+    <div style="position:relative;" class="row justify-center bg-white ">
+      <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search search-open" >
+          <template v-slot:append>
+            <q-icon name="search" @click="searchNews"></q-icon>
+          </template>
+      </q-input>
+    </div>
   </q-header>
 </template>
 <script>
@@ -219,11 +231,53 @@ export default {
     },
     notificationsRead:function(evt){
       this.$store.dispatch('notificationsRead');
+    },
+    toggleDrawer:function(){
+    
+    let drawer=this.$refs.drawer;
+    let bars=this.$refs.bars;
+    
+     if(drawer.classList.contains("drawer-open")){
+        drawer.classList.remove("drawer-open");
+        this.$root.$emit("drawerOpen",false)
+        }
+     else{
+        drawer.classList.add("drawer-open");
+        this.$root.$emit("drawerOpen",true);
+        }
+
+      if(bars.classList.contains("drawer__icon-opened"))
+        bars.classList.remove("drawer__icon-opened")
+      else
+        bars.classList.add("drawer__icon-opened");
+
+    },
+    toggleSearch:function(){
+      let search=this.$refs.mobileSearch.$el;
+      if(search.classList.contains("search-open"))
+         search.classList.remove("search-open");
+      else
+         search.classList.add("search-open");
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.search{
+
+  position: absolute;
+  opacity: 0;
+  transition: all .4s;
+  
+
+  &-open{
+    display: block;
+    opacity: 100;
+    
+    
+  }
+}
+
 .title{
 font-size: 1.1rem;
 }
@@ -263,6 +317,87 @@ content: url('~assets/catogaries.svg');
     text-decoration: underline;
   }
 }
+.drawer{
+  background-color: white;
+  height: 100vh;
+  position: fixed;
+  width: 0;
+  z-index: 1000;
+  transition: all .8s cubic-bezier(0.86, 0, 0.07, 1);
+  overflow: hidden;
 
+&-open{
+width: 100%;
+
+}
+&__item{
+  font-size: 1.4rem;
+  color: $primary;
+}
+
+&__item-active{
+ 
+ background-color: teal;
+ color: white;
+
+  
+  &::before{
+    content: " ";
+    height: 100%;
+    background-color: teal;
+    width: 3px;
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
+
+&__icon {
+        position: relative;
+        margin-right: -4px;
+        margin-top: -3px;
+        &,
+        &::before,
+        &::after {
+            width: 1.6rem;
+            height: 3px;
+            background-color: teal;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before { top: -.55rem; }
+        &::after { top: .55rem; }
+
+        &-opened {
+        background-color: transparent;
+        }
+
+        &-opened::before{
+          top: 0;
+          transform: rotate(135deg);
+        }
+
+        &-opened::after{
+           top: 0;
+           transform: rotate(-135deg);
+        }
+
+    }
+
+    
+
+  
+}
 
 </style>

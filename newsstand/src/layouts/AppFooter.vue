@@ -78,7 +78,7 @@
   <!-- -- -->
 
   <!-- mobile-version -->
-  <q-footer class="mobile-only">
+  <q-footer  ref="mobileFooter" class="mobile-only">
     <div class="row q-pa-lg text-center">
        
       <div class="col-12">
@@ -140,7 +140,14 @@
 <script>
 
 export default {
-  
+ created(){
+   this.$root.$on("drawerOpen",(arg)=>{
+     if(arg)
+     this.$refs.mobileFooter.$el.style.display="none";
+     else
+     this.$refs.mobileFooter.$el.style.display="block";
+   });
+ }
 }
 </script>
 <style lang="scss" scoped>
