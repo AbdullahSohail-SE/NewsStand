@@ -77,7 +77,7 @@
         <newslist :number="9" :articles="europeLatest.slice(3)"></newslist>
       </div>
     </section>
-    <section class="row items-stretch justify-between q-my-lg">
+    <section  class="row items-stretch justify-between q-my-lg">
       <header class="col-12 q-my-lg ">
         <h1 class="q-my-sm app-headings text-subtle-grey">Africa Now</h1>
       </header>
