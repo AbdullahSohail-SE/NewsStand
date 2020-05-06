@@ -122,8 +122,7 @@
     <q-toolbar ref="mobileToolbar" class="items-stretch mobile-only bg-white ">
       
       <div class="col-12 row items-center justify-between">
-        <div ref="bars" @click="toggleDrawer" class="drawer__icon"></div> <!--drawer__icon-opened-->
-        <!-- <q-btn flat round dense icon="fas fa-bars" color="teal" /> -->
+        <div ref="bars" @click="toggleDrawer" class="drawer__icon"></div> 
         <q-btn @click.stop="toggleSearch" flat size="lg"  dense icon="search" color="teal" />
         <q-btn-dropdown   menu-anchor="bottom middle" menu-self="top middle" content-class="bookmarks" text-color="teal" icon="bookmark" dropdown-icon=" " style="height:100%;overflow:hidden;width:3rem"  flat dense   >
         <template v-slot:label >
@@ -132,7 +131,9 @@
         <q-list v-if="bookmarked" style="width:15rem" class="q-mx-md" separator padding>
           <q-item v-for="article in bookmarkedArticles" :key="article.title">
             <q-item-section>
+              <a :href="article.url">
               <span  class="bookmark-text text-weight-medium">{{article.title}}</span>
+              </a>
             </q-item-section>
             <q-item-section side>
                <q-btn @click="removeBookmark(article)" icon="fa fa-trash" round flat color="teal" size="10px"></q-btn>
@@ -191,7 +192,7 @@
         </q-list>
     </div>
     <div style="position:relative;" class="row justify-center mobile-only bg-white ">
-      <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search  search-hide" >
+      <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search  search-open" >
           <template v-slot:append>
             <q-icon  name="search" @click="searchNews();toggleSearch()"></q-icon>
           </template>
@@ -266,9 +267,6 @@ export default {
     },
     toggleSearch:function(){
       let search=this.$refs.mobileSearch.$el;
-
-      if(search.classList.contains("search-hide"))
-        search.classList.remove("search-hide");
 
       if(search.classList.contains("search-open"))
          search.classList.remove("search-open");
