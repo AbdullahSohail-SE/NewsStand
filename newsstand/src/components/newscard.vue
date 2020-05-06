@@ -92,6 +92,13 @@
     methods:{
       bookmark:function(){
         if(!this.bookmarked){
+        if(this.article.title.contains("&")){
+          this.$q.notify({
+           message:"Bad Link! Cannot add this to read later list :(",
+           type:"warning" 
+          })
+          return;
+        }
         this.$store.dispatch('AddToReadingList',this.article);
         }
         else

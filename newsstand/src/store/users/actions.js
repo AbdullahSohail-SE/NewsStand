@@ -1,4 +1,4 @@
-import { Notify } from 'quasar'
+
 
 export function logInUser ({commit,dispatch},payload) {
   
@@ -18,21 +18,7 @@ export function logInUser ({commit,dispatch},payload) {
           dispatch('syncData');
           this._vm.$emit("logInPending",true);
           this.$router.push('/');
-        })
-        .catch(err=>{
-          if(err.response.data.error.message=="INVALID_PASSWORD")
-          Notify.create({
-                color:"negative",
-                message:"Incorrect Password!",
-                icon:"lock"
-            });
-          if(err.response.data.error.message=="EMAIL_NOT_FOUND")
-          Notify.create({
-            color:"negative",
-            message:"Invalid Email!",
-            icon:"mail"
-              });
-        })
+        });
         
   
 }

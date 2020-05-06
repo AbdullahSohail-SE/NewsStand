@@ -127,11 +127,23 @@ export default {
       this.$store.dispatch('logInUser',{email:this.email,password:this.password})
       .then(()=>{
         this.logInSpinner=false;
-        this.$refs.signInBtn.disabled=false;
+        this.$refs.signInBtn.$el.disabled=false;
         })
-      .catch(()=>{
+      .catch((err)=>{
         this.logInSpinner=false;
-        this.$refs.signInBtn.disabled=false;
+        this.$refs.signInBtn.$el.disabled=false;
+        if(err.response.data.error.message=="INVALID_PASSWORD")
+          this.$q.notify({
+                color:"negative",
+                message:"Incorrect Password!",
+                icon:"lock"
+            });
+          if(err.response.data.error.message=="EMAIL_NOT_FOUND")
+          this.$q.notify({
+            color:"negative",
+            message:"Invalid Email!",
+            icon:"mail"
+              });
         });
     }
   }
