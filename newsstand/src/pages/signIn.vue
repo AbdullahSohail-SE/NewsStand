@@ -4,7 +4,7 @@
     <q-carousel
       animated
       v-model="slide"
-      autoplay
+      :autoplay="7000"
       transition-prev="slide-right"
       transition-next="slide-up"
       height="100%"
