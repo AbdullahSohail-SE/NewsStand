@@ -6,7 +6,7 @@
     
     <div class="custom" ref="custom" v-else>
       <q-img :src="article.urlToImage" spinner-color="primary" :height="imgHeight">
-        <q-btn @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
+        <q-btn ref="bookmarkBtn" @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
           <q-tooltip
           transition-show="scale"
           transition-hide="scale"
@@ -44,18 +44,18 @@
         dataFetched: false
       }
     },
-    computed:{
-      bookmarked:function(){
-        const readingList=this.$store.getters.getReadingList;
-        const index=readingList.findIndex((article)=>{
-          if(
-            article.category==this.article.category
-            && article.author==this.article.author
-            && article.title==this.article.title
-            )
-          return true;
+    computed: {
+      bookmarked: function () {
+        const readingList = this.$store.getters.getReadingList;
+        const index = readingList.findIndex((article) => {
+          if (
+            article.category == this.article.category &&
+            article.author == this.article.author &&
+            article.title == this.article.title
+          )
+            return true;
         });
-       
+
         return (index == -1) ? false : true;
       }
     },
@@ -63,9 +63,9 @@
       article: {
         required: true
       },
-      linkBtn:{
-        default:false,
-        type:Boolean
+      linkBtn: {
+        default: false,
+        type: Boolean
       },
       title: {
         default: true,
@@ -83,50 +83,75 @@
         default: false,
         type: Boolean
       },
-      imgHeight:{
-        default:'330px',
-        type:String
+      imgHeight: {
+        default: '330px',
+        type: String
       },
-      titleSize:{
-        default:'24px',
-        type:String
+      titleSize: {
+        default: '24px',
+        type: String
       },
-      descSize:{
-        default:'auto',
-        type:String
+      descSize: {
+        default: 'auto',
+        type: String
       },
-      contentSize:{
-       default:'auto',
-       type:String
+      contentSize: {
+        default: 'auto',
+        type: String
       }
     },
-    created:async function(){
-      
-    },
-    watch:{
-      article:function(newVal){
+    watch: {
+      article: function (newVal) {
         Object.keys(newVal).length > 0 ? this.dataFetched = true : this.dataFetched = false;
       }
     },
-    methods:{
-      bookmark:function(){
-        if(!this.bookmarked){
-        this.$store.dispatch('AddToReadingList',this.article);
-        }
-        else
-        {
-          this.$store.dispatch('unbookmark',this.article);
+    methods: {
+      bookmark: function () {
+        const bookmarkBtn = this.$refs.bookmarkBtn.$el;
+        bookmarkBtn.disabled = true;
+
+        if (!this.bookmarked) {
+          if (this.article.title.includes("&")) {
+            this.$q.notify({
+              message: "Bad Link! Cannot add this to read later list :(",
+              type: "warning"
+            })
+            return;
+          }
+          this.$store.dispatch('AddToReadingList', this.article)
+            .then(() => {
+              bookmarkBtn.disabled = false;
+            })
+            .catch((er) => {
+              this.$q.notify({
+                message: "Network error occured perhaps reload the app :(",
+                icon: "fas fa-wifi",
+                type: "warning"
+              });
+              bookmarkBtn.disabled = false;
+            })
+        } else {
+          this.$store.dispatch('unbookmark', this.article)
+          .then(()=>{bookmarkBtn.disabled=false})
+          .catch((er)=>{
+            this.$q.notify({
+                message: "Network error occured perhaps reload the app :(",
+                icon: "fas fa-wifi",
+                type: "warning"
+              });
+            bookmarkBtn.disabled=false
+            });
         }
       }
     },
-    updated(){      
+    updated() {
 
-    var customDiv=this.$refs.custom;    
-    customDiv.style.setProperty('--titleSize',this.titleSize);
-    customDiv.style.setProperty('--descSize',this.descSize);
-    customDiv.style.setProperty('--contSize',this.contentSize);
+      var customDiv = this.$refs.custom;
+      customDiv.style.setProperty('--titleSize', this.titleSize);
+      customDiv.style.setProperty('--descSize', this.descSize);
+      customDiv.style.setProperty('--contSize', this.contentSize);
 
-  }
+    }
   }
 
 </script>

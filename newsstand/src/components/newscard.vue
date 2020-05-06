@@ -3,7 +3,7 @@
     <q-skeleton v-if="!dataFetched" :class="cardSize" square></q-skeleton>
     <div :class="cardSize" v-else>
       <q-img :src="article.urlToImage" height="100%" >
-        <q-btn @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
+        <q-btn ref="bookmarkBtn" @click="bookmark" push round :icon="!bookmarked ? 'far fa-bookmark' : 'bookmark'" color=transparent  class="bookmark">
           <q-tooltip
           transition-show="scale"
           transition-hide="scale"
@@ -90,20 +90,41 @@
       }
     },
     methods:{
-      bookmark:function(){
-        if(!this.bookmarked){
-        if(this.article.title.contains("&")){
-          this.$q.notify({
-           message:"Bad Link! Cannot add this to read later list :(",
-           type:"warning" 
-          })
-          return;
-        }
-        this.$store.dispatch('AddToReadingList',this.article);
-        }
-        else
-        {
-          this.$store.dispatch('unbookmark',this.article);
+      bookmark: function () {
+        const bookmarkBtn = this.$refs.bookmarkBtn.$el;
+        bookmarkBtn.disabled = true;
+
+        if (!this.bookmarked) {
+          if (this.article.title.includes("&")) {
+            this.$q.notify({
+              message: "Bad Link! Cannot add this to read later list :(",
+              type: "warning"
+            })
+            return;
+          }
+          this.$store.dispatch('AddToReadingList', this.article)
+            .then(() => {
+              bookmarkBtn.disabled = false;
+            })
+            .catch((er) => {
+              this.$q.notify({
+                message: "Network error occured perhaps reload the app :(",
+                icon: "fas fa-wifi",
+                type: "warning"
+              });
+              bookmarkBtn.disabled = false;
+            })
+        } else {
+          this.$store.dispatch('unbookmark', this.article)
+          .then(()=>{bookmarkBtn.disabled=false})
+          .catch((er)=>{
+            bookmarkBtn.disabled=false
+            this.$q.notify({
+                message: "Network error occured perhaps reload the app :(",
+                icon: "fas fa-wifi",
+                type: "warning"
+              });
+            });
         }
       }
     }

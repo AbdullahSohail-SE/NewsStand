@@ -1,11 +1,10 @@
 
 export function AddToReadingList ({commit,getters},payload)  {
   const userId=getters.getCurrentUser.userId;
-  this._vm.$firebaseDbREST.post('Saved/'+userId+'.json',payload)
+  return this._vm.$firebaseDbREST.post('Saved/'+userId+'.json',payload)
   .then(()=>{
     commit('addReadLater',payload);
   })
-  
 }
 export function notificationsRead({commit,getters}){
   const userId=getters.getCurrentUser.userId;
@@ -14,7 +13,7 @@ export function notificationsRead({commit,getters}){
 }
 export function unbookmark({commit,getters},payload){
   const userId=getters.getCurrentUser.userId;
-  this._vm.$firebaseDbREST
+  return this._vm.$firebaseDbREST
   .get(`Saved/${userId}.json?orderBy="title"&equalTo="${payload.title}"`)
   .then(resp=>{
     return Object.keys(resp.data)[0];
