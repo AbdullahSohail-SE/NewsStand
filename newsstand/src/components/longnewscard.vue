@@ -22,7 +22,6 @@
       <q-card-section class="q-px-none customContainer">
         <a :href="article.url">
         <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}
-          <q-icon color="primary"  class="mobile-only" name="fas fa-external-link-square-alt"></q-icon>
         </h6>
         
         </a>

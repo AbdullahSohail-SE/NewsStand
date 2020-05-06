@@ -191,7 +191,7 @@
         </q-list>
     </div>
     <div style="position:relative;" class="row justify-center mobile-only bg-white ">
-      <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search search-open" >
+      <q-input ref="mobileSearch" style="width:95vw;" square="" dense outlined placeholder="Search News" v-model="searchQuery" input-class="text-left" bg-color="white" class=" search  search-hide" >
           <template v-slot:append>
             <q-icon  name="search" @click="searchNews();toggleSearch()"></q-icon>
           </template>
@@ -266,6 +266,10 @@ export default {
     },
     toggleSearch:function(){
       let search=this.$refs.mobileSearch.$el;
+
+      if(search.classList.contains("search-hide"))
+        search.classList.remove("search-hide");
+
       if(search.classList.contains("search-open"))
          search.classList.remove("search-open");
       else
@@ -281,12 +285,15 @@ export default {
 .search{
 
   position: absolute;
-  opacity: 0;
+
   transition: all .4s;
   display: none;
 
   &-open{
     display: block;
+  }
+  &-hide{
+    display: none !important;
   }
 }
 
