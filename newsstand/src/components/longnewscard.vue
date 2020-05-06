@@ -20,7 +20,12 @@
         </template>
       </q-img>
       <q-card-section class="q-px-none customContainer">
-        <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}</h6>
+        <a :href="article.url">
+        <h6 class="q-ma-none q-pa-none normal-line-height customTitle" v-if="title">{{article.title}}
+          <q-icon color="primary"  class="mobile-only" name="fas fa-external-link-square-alt"></q-icon>
+        </h6>
+        
+        </a>
         <p  class="q-my-sm text-body-1 customDesc" v-if="description">{{article.description}}</p>
         <p  class=" text-body-1 q-my-md customContent" v-if="content">{{article.content}}</p>
         <q-btn class="q-mb-md" v-if="linkBtn" type="a" :href="article.url" label="Visit"  color="primary" unelevated="" no-caps icon-right="fas fa-external-link-square-alt" target="_blank" />

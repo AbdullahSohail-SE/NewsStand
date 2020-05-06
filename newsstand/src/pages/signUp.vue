@@ -28,7 +28,8 @@
         </q-input>
       </q-card-section>
       <q-card-section class="text-center">
-        <q-btn @click="signUp" outline  label="Sign Up" size="md" text-color="teal"  color="teal"></q-btn>
+        <q-btn ref="signUpBtn" @click="signUp" outline  label="Sign Up" size="md" text-color="teal"  color="teal"></q-btn><q-spinner-oval v-if="signUpSpinner" size="md" class="q-ml-md"  color="teal" >
+      </q-spinner-oval>
         <span style="display:block" class="text-teal q-mt-lg q-mb-sm">OR</span>
       <router-link  class="text-teal hover" to="/users/signIn">Already have an account?</router-link>
       </q-card-section>
@@ -44,7 +45,8 @@ import { required,email } from 'vuelidate/lib/validators'
         slide: 1,
         email: '',
         password: '',
-        name: ''
+        name: '',
+        signUpSpinner:false
       }
     },
     methods:{
@@ -63,7 +65,17 @@ import { required,email } from 'vuelidate/lib/validators'
           
         if(this.$refs)
 
-        this.$store.dispatch('signUpUser',{email:this.email,password:this.password,displayName:this.name});
+        this.signUpSpinner=true;
+        this.$refs.signUpBtn.$el.disabled=true;
+        this.$store.dispatch('signUpUser',{email:this.email,password:this.password,displayName:this.name})
+        .then(()=>{
+        this.signUpSpinner=false;
+        this.$refs.signUpBtn.disabled=false;
+        })
+        .catch(()=>{
+        this.signUpSpinner=false;
+        this.$refs.signUpBtn.disabled=false;
+        });
       },
       validateEmail:function(val){
         return new Promise((resolve,reject)=>{

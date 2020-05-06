@@ -123,7 +123,6 @@ export default {
       return;
       
       this.logInSpinner=true;
-      console.log(this.$refs.signInBtn);
       this.$refs.signInBtn.$el.disabled=true;
       this.$store.dispatch('logInUser',{email:this.email,password:this.password})
       .then(()=>{

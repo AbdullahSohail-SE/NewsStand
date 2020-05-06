@@ -132,15 +132,15 @@
       margin: 0;
 
       &-sm {
-        font-size: 18px;
+        font-size: 1rem;
       }
 
       &-md {
-        font-size: 24px;
+        font-size: 1.2rem;
       }
 
       &-lg {
-        font-size: 36px;
+        font-size: 1.8rem;
       }
     }
 
