@@ -88,6 +88,11 @@
       <q-btn ref="signInBtn" @click="logIn" outline="" class="q-mt-lg"  label="Log In" size="md" text-color="white"  color="white"></q-btn>
       <span style="display:block" class="text-white q-mt-lg q-mb-sm">OR</span>
       <router-link  class="text-white hover" to="/users/signUp">Create an account</router-link>
+
+      <div class="q-mt-xl" v-if="logInSpinner">
+      <q-spinner-oval size="xl"  color="white" style="display:block:">
+      </q-spinner-oval>
+      </div>
     </div>
    
   </div>
@@ -102,8 +107,8 @@ export default {
 
       slide:1,
       email:'',
-      password:''
-
+      password:'',
+      logInSpinner:false
     }
   },
   methods:{
@@ -117,7 +122,18 @@ export default {
       if(emailInput.hasError || passwordInput.hasError)
       return;
       
-      this.$store.dispatch('logInUser',{email:this.email,password:this.password});
+      this.logInSpinner=true;
+      console.log(this.$refs.signInBtn);
+      this.$refs.signInBtn.$el.disabled=true;
+      this.$store.dispatch('logInUser',{email:this.email,password:this.password})
+      .then(()=>{
+        this.logInSpinner=false;
+        this.$refs.signInBtn.disabled=false;
+        })
+      .catch(()=>{
+        this.logInSpinner=false;
+        this.$refs.signInBtn.disabled=false;
+        });
     }
   }
 }

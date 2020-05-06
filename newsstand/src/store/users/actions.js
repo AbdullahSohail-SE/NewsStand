@@ -2,7 +2,7 @@ import { Notify } from 'quasar'
 
 export function logInUser ({commit,dispatch},payload) {
   
-  this._vm.$firebaseAuth.post('/accounts:signInWithPassword',null, {
+  return this._vm.$firebaseAuth.post('/accounts:signInWithPassword',null, {
         params: {
           email:payload.email,
           password:payload.password
@@ -16,6 +16,7 @@ export function logInUser ({commit,dispatch},payload) {
           dispatch('syncNotifications');
           dispatch('pushLocalStorage',{ data:resp.data, expiresIn:3600});
           dispatch('syncData');
+          this._vm.$emit("logInPending",true);
           this.$router.push('/');
         })
         .catch(err=>{
