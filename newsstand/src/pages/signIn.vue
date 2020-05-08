@@ -88,7 +88,6 @@
       <q-btn ref="signInBtn" @click="logIn" outline="" class="q-mt-lg"  label="Log In" size="md" text-color="white"  color="white"></q-btn>
       <span style="display:block" class="text-white q-mt-lg q-mb-sm">OR</span>
       <router-link  class="text-white hover" to="/users/signUp">Create an account</router-link>
-
       <div class="q-mt-xl" v-if="logInSpinner">
       <q-spinner-oval size="xl"  color="white" style="display:block:">
       </q-spinner-oval>
@@ -110,6 +109,21 @@ export default {
       password:'',
       logInSpinner:false
     }
+  },
+  created(){
+    this.$q.notify({
+      message:`Testing Email:dummy@gmail.com      
+      Password:123456`,
+      type:"info",
+      multiLine:true,
+      timeout:12000
+    });
+    this.$q.notify({
+      message:"Some other people might also be using Testing Email so create an account with some random mail and password!",
+      type:"warning",
+      multiLine:true,
+      timeout:12000
+    })
   },
   methods:{
     logIn:function(){
