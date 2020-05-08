@@ -2,6 +2,8 @@
 
 An app that keeps you informed of latest happenings around the globe with top headlines from top news sources worldwide.
 
+:link: Live Demo : https://newsstand.netlify.app/
+
 ## Technologies used :rocket:
 :heavy_check_mark: Vue.js  
 :heavy_check_mark: Quasar Framework  
