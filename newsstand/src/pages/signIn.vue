@@ -116,13 +116,15 @@ export default {
       Password:123456`,
       type:"info",
       multiLine:true,
-      timeout:12000
+      timeout:12000,
+      progress:true
     });
     this.$q.notify({
       message:"Some other people might also be using Testing Email so create an account with some random mail and password!",
       type:"warning",
       multiLine:true,
-      timeout:12000
+      timeout:12000,
+      progress:true
     })
   },
   methods:{
