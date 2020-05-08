@@ -5,7 +5,7 @@ import {Notify} from 'quasar'
 const instance=axios.create({
   baseURL:"http://newsapi.org/v2",
   params:{
-    apiKey:"65517718757b4edf826bca9a0d8c5bcf"
+    apiKey:"9768e0e22f7e495494ed89aec5a63180"
   }
 });
 
