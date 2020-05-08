@@ -24,7 +24,7 @@
           <h3 class="text-white text-weight-500 q-my-md">
             Know what interests you
           </h3>
-          <p class="text-subtle-grey text-weight-medium" style="font-size:22px">With diffirent categories available choose if you want business updates, entertainment news, sports news or anything else...</p>
+          <p class="text-subtle-grey text-weight-medium" style="font-size:22px">With different categories available choose if you want business updates, entertainment news, sports news or anything else...</p>
         </div>
       </div>
       </q-carousel-slide>

@@ -9,5 +9,9 @@ export default async ({ Vue }) => {
   });
   Vue.filter('capitalizeFirst',function(value){
     return value.charAt(0).toUpperCase() + value.slice(1);
-  })
+  });
+
+  Vue.filter('truncateText',function(value){
+    return value.replace(/^(.{1}[^\s]*).*/, "$1");
+  });
 }

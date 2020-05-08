@@ -90,7 +90,7 @@
         </q-list>
         </q-btn-dropdown>
       
-        <q-btn-dropdown  content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName" style="height:100%"  flat  dropdown-icon="settings"  >
+        <q-btn-dropdown  content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName | truncateText" style="height:100%"  flat  dropdown-icon="settings"  >
           <q-list   separator >
             <q-item  @click="logoutUser" clickable>
               <q-item-section avatar="">
@@ -156,7 +156,7 @@
         </q-list>
         </q-btn-dropdown>
 
-        <q-btn-dropdown  color="teal" content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName" style="height:100%;overflow:hidden;width:6rem" dropdown-icon=" " flat   >
+        <q-btn-dropdown  color="teal" content-class="bookmarks" icon="person"  menu-anchor="bottom middle" menu-self="top middle"  :label="userName | truncateText" style="height:100%;overflow:hidden;width:6rem" dropdown-icon=" " flat   >
           <q-list   separator >
             <q-item  @click="logoutUser" clickable>
               <q-item-section avatar="">
